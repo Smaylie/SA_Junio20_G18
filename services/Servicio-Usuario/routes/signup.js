@@ -1,0 +1,35 @@
+var express = require('express');
+const { render } = require('../app');
+var router = express.Router();
+var insert_conn = require('../public/javascripts/conexion');
+
+/*Registrar un usuario */
+router.post('/', function(req, res, next) {
+    //obtengo los parametros del json
+    let nombre = req.body.nombre;
+    let apellidos = req.body.apellidos;
+    let correo = req.body.correo;
+    let password = req.body.password;
+    let telefono = req.body.telefono;
+    let estado = req.body.estado;
+    let tipo = req.body.tipo;
+
+    //ahora realizo el query
+    let query = "insert into SA.Cliente values ( default,"
+    query += "'" + nombre + "',";
+    query += "'" + apellidos + "',";
+    query += "'" + correo + "',";
+    query += "'" + password + "',";
+    query += "'" + telefono + "',";
+    query += " " + estado + ",";
+    query += " " + tipo + ");";
+
+    //mando a correr el query
+    insert_conn.insert_into(query).then(function(resultado){
+        res.send("correcto");
+    }).catch(function(err){
+        res.send("incorrecto: " + err);
+    })
+});
+
+module.exports = router;
