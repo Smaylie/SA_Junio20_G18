@@ -1,13 +1,32 @@
 var express = require('express');
 var router = express.Router();
+var conexion = require('../public/javascripts/conexion');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('Recibimos para un login');
-});
+router.post('/', function(req,res,next){
+  //obtengo los parametros
+  let usuario = req.body.usuario;
+  let contra = req.body.contra;
 
-router.post('/auth', function(req,res,next){
-    res.send(req.body.usuario);
+  //realizo el query
+  let query = "SELECT idc "
+  query += "FROM Cliente ";
+  query += "WHERE Cliente.nombres = '" + usuario + "' ";
+  query += "AND Cliente.password = '" + contra + "';";
+  console.log(query);
+
+  //mando a correr el query
+  conexion.select_from(query).then(function(resultado){
+    //si no regreso nada la consulta
+    if(resultado.length < 1){
+      res.send(JSON.stringify({Mensaje:"No existe la cuenta"}));
+    }
+
+    //si la consulta regresa id entonces si existe la cuenta
+    res.send(JSON.stringify(resultado[0]));
+    
+  }).catch(function(err){
+    res.send("No existe la cuenta");
+  })
 });
 
 module.exports = router;

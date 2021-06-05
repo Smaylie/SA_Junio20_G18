@@ -24,4 +24,22 @@ function insert_into(query){
     })
 }
 
+//funcion para un select
+function select_from(query){
+    return new Promise(function(resolve, reject){
+        con.query(
+            query,
+            function(err,rows){
+                if(rows == undefined){
+                    reject(new Error(err));
+                }
+                else{
+                    resolve(rows);
+                }
+            }
+        )
+    })
+}
+
 module.exports.insert_into = insert_into;
+module.exports.select_from = select_from;

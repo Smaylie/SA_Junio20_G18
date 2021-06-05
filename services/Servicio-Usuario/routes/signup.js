@@ -26,9 +26,9 @@ router.post('/', function(req, res, next) {
 
     //mando a correr el query
     insert_conn.insert_into(query).then(function(resultado){
-        res.send("correcto");
+        res.send(JSON.stringify({codigo:201, mensaje:"Insertado correctamente"}));
     }).catch(function(err){
-        res.send("incorrecto: " + err);
+        res.send(JSON.stringify({codigo:406, mensaje:err}));
     })
 });
 
