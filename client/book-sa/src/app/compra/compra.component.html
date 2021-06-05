@@ -1,0 +1,60 @@
+<app-barrasup></app-barrasup>
+
+<div class="container" style="margin-top: 30px;">
+    <h1>Información de compra</h1>
+    <hr><br><br>
+    <div class="row justify-content-center align-items-center" style="height: 80vh !important;">
+        <div class="col-md-6">
+            <div class="card text-center">
+                <div class="card-header">Checkout</div>
+                <div class="card-body">
+                    <h3 class="card-title">Metodo de pago</h3>
+                    <form>
+                        <div class="mb-3">
+                            <select [(ngModel)]="selectedPago" name="tipoPagoSelect" id="tipoPagoSelect" class="form-select">
+                              <option value="1">Contra entrega</option>
+                              <option value="2">TC</option>
+                            </select>
+                        </div>
+                        <div *ngIf="selectedPago == 1; else elseBlock">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="nombresInput"
+                                    placeholder="Nombres" />
+                                <label for="nombresInput">Nombres</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="passwordInput" placeholder="Contraseña" />
+                                <label for="passwordInput">Contraseña</label>
+                            </div>
+                        </div>
+                        <ng-template #elseBlock>
+                            <div class="form-floating mb-3">
+                                <input type="number" class="form-control" id="tarjetaInput"
+                                    placeholder="Numero de tarjeta" />
+                                <label for="tarjetaInput">Numero de tarjeta</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="fechaInput"
+                                    placeholder="Fecha de vencimiento" />
+                                <label for="fechaInput">Fecha de vencimiento</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="number" class="form-control" id="cvvIntup" placeholder="cvv" />
+                                <label for="cvvIntup">cvv</label>
+                            </div>
+                        </ng-template>
+                        <h3 class="card-title">Información del cliente</h3>
+                        <ul class="list-group list-group-flush" style="text-align: left !important;">
+                            <li class="list-group-item">Nombres: {{ cliente.nombres }}</li>
+                            <li class="list-group-item">Apellidos: {{ cliente.apellidos }}</li>
+                            <li class="list-group-item">Correo: {{ cliente.correo }}</li>
+                            <li class="list-group-item">Dirección: {{ cliente.direccion }}</li>
+                        </ul>
+                        <button class="btn btn-primary">Realizar compra</button>
+                    </form>
+                </div>
+                <div class="card-footer text-muted"><a href="/mi-carrito">Regresar a carrito</a></div>
+            </div>
+        </div>
+    </div>
+</div>

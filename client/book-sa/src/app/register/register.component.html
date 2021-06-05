@@ -1,0 +1,66 @@
+<app-barrasup></app-barrasup>
+
+<div class="container">
+    <div class="row justify-content-center align-items-center" style="height: 80vh !important;">
+        <div class="col-md-6">
+            <div class="card text-center">
+                <div class="card-header">Registro en BookSA</div>
+                <div class="card-body">
+                    <h3 class="card-title">REGISTRATE</h3>
+                    <form>
+                        <div class="mb-3">
+                            <select [(ngModel)]="selectedUsuario" name="tipoUsuarioSelect" id="tipoUsuarioSelect" class="form-select">
+                              <option value="1">Usuario</option>
+                              <option value="2">Editorial</option>
+                            </select>
+                        </div>
+                        <div *ngIf="selectedUsuario == 1; else elseBlock">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="nombresInput"
+                                    placeholder="Nombres" />
+                                <label for="nombresInput">Nombres</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="apellidosInput"
+                                    placeholder="Apellidos" />
+                                <label for="apellidosInput">Apellidos</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="correoInput"
+                                    placeholder="Correo" />
+                                <label for="correoInput">Correo</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="passwordInput" placeholder="Contraseña" />
+                                <label for="passwordInput">Contraseña</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="number" class="form-control" id="celularInput"
+                                    placeholder="Celular" />
+                                <label for="celularInput">Celular</label>
+                            </div>
+                        </div>
+                        <ng-template #elseBlock>
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="nombreEInput"
+                                    placeholder="Nombre de Editorial" />
+                                <label for="nombreEInput">Nombre de Editorial</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="correoEInput"
+                                    placeholder="Correo" />
+                                <label for="correoEInput">Correo</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="passwordEInput" placeholder="Contraseña" />
+                                <label for="passwordEInput">Contraseña</label>
+                            </div>
+                        </ng-template>
+                        <button class="btn btn-primary">Registrarse</button>
+                    </form>
+                </div>
+                <div class="card-footer text-muted"><a href="/login">Ingresar a BookSA!</a></div>
+            </div>
+        </div>
+    </div>
+</div>
