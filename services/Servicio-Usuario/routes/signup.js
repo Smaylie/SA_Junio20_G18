@@ -1,7 +1,7 @@
 var express = require('express');
 const { render } = require('../app');
 var router = express.Router();
-var insert_conn = require('../public/javascripts/conexion');
+var con = require('../public/javascripts/conexion');
 
 /*Registrar un usuario */
 router.post('/', function(req, res, next) {
@@ -25,7 +25,7 @@ router.post('/', function(req, res, next) {
     query += " " + tipo + ");";
 
     //mando a correr el query
-    insert_conn.insert_into(query).then(function(resultado){
+    con.neutral_query(query).then(function(resultado){
         res.send(JSON.stringify({codigo:201, mensaje:"Insertado correctamente"}));
     }).catch(function(err){
         res.send(JSON.stringify({codigo:406, mensaje:err}));

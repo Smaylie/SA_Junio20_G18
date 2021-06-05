@@ -12,7 +12,7 @@ router.post('/', function(req,res,next){
   query += "FROM Cliente ";
   query += "WHERE Cliente.nombres = '" + usuario + "' ";
   query += "AND Cliente.password = '" + contra + "';";
-  console.log(query);
+  //console.log(query);
 
   //mando a correr el query
   conexion.select_from(query).then(function(resultado){
@@ -20,10 +20,9 @@ router.post('/', function(req,res,next){
     if(resultado.length < 1){
       res.send(JSON.stringify({Mensaje:"No existe la cuenta"}));
     }
-
     //si la consulta regresa id entonces si existe la cuenta
     res.send(JSON.stringify(resultado[0]));
-    
+
   }).catch(function(err){
     res.send("No existe la cuenta");
   })

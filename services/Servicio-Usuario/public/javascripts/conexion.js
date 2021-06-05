@@ -8,13 +8,13 @@ var con = mysql.createConnection({
 })
 
 //funcion que es para un insert
-function insert_into(query){
+function neutral_query(query){
     return new Promise(function(resolve, reject){
         con.query(
             query,
             function(err,result){
                 if (err){
-                    reject(new Error("Algun error en insertar en cliente"));
+                    reject(new Error(err));
                 } 
                 else{
                     resolve(1);
@@ -41,5 +41,5 @@ function select_from(query){
     })
 }
 
-module.exports.insert_into = insert_into;
+module.exports.neutral_query = neutral_query;
 module.exports.select_from = select_from;
