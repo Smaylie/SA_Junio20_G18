@@ -1,7 +1,7 @@
 {
-  "name": "EliminarCarrito",
+  "name": "serviciocarrito",
   "version": "1.0.0",
-  "description": "Microservicio para eliminar el carrito",
+  "description": "Servicio que maneja todas las funcionalidades del carrito",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
