@@ -15,7 +15,7 @@ var connection = mysql.createConnection({
     database: dbConfig.hrPool.database
 });
 
-const app = express().use(cors()).use(bodyParser()).use('/carrito', router);
+const app = express().use(cors()).use(bodyParser()).use('/api', router);
 
 app.get("/", (req, res) => { });
 
