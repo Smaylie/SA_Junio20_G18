@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-app.post("/", (req, res) => {
+app.post("/api", (req, res) => {
     let input = req.body;
     let sql =  `INSERT INTO Genero (nombre, descripcion) VALUES (?,?);`;
     connection.query(sql, [input.nombre, input.descripcion], (err, result) => {

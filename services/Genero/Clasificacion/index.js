@@ -11,7 +11,7 @@ const connection = mysql.createConnection({
     password: '1234'
 });
 
-const port = process.env.PORT || 3610;
+const port = process.env.PORT || 3630;
 const app = express();
 
 app.set("json spaces", 2);
@@ -26,22 +26,37 @@ app.get("/api/:id?", (req, res) => {
     let id = parseInt(req.params.id, 10);
 
     if(id) {
-        connection.query(`SELECT * FROM Genero WHERE idg = ?;`, [id], (err, result) => {
+        let sqlID =  `SELECT C.libro as 'idLibro', L.nombre as 'nombreLibro', C.genero as 'idGenero', G.nombre as 'nombreGenero'
+        FROM Clasificacion C, Libro L, Genero G
+        WHERE C.libro = L.idl
+        AND C.Genero = G.idg
+        AND C.libro = ?;`;
+
+        connection.query(sqlID, [id], (err, result) => {
             if(err) {
                 res.json({
                     Error: err.message
                 });
             }
-            res.json(result);
+            res.json({
+                result
+            });
         });
     } else {
-        connection.query(`SELECT * FROM Genero;`, (err, result) => {
+        let sql =  `SELECT C.libro as 'idLibro', L.nombre as 'nombreLibro', C.genero as 'idGenero', G.nombre as 'nombreGenero'
+        FROM Clasificacion C, Libro L, Genero G
+        WHERE C.libro = L.idl
+        AND C.Genero = G.idg;`;
+        
+        connection.query(sql, (err, result) => {
             if(err) {
                 res.json({
                     Error: err.message
                 });
             }
-            res.json(result);
+            res.json({
+                result
+            });
         });
     }
 });
