@@ -11,7 +11,7 @@ const connection = mysql.createConnection({
     password: '1234'
 });
 
-const port = process.env.PORT || 3610;
+const port = process.env.PORT || 3620;
 const app = express();
 
 app.set("json spaces", 2);
@@ -22,15 +22,18 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-app.get("/", (req, res) => {
-    let sql =  `SELECT * FROM Genero;`;
-    connection.query(sql, (err, result) => {
+app.post("/", (req, res) => {
+    let input = req.body;
+    let sql =  `INSERT INTO Genero (nombre, descripcion) VALUES (?,?);`;
+    connection.query(sql, [input.nombre, input.descripcion], (err, result) => {
         if(err) {
             res.json({
                 Error: err.message
             });
         }
-        res.json(result);
+        res.json({
+            Id: result.insertId
+        });
     });
 });
 
