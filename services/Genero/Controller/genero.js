@@ -19,6 +19,7 @@ function create (req, res) {
             });
         }
         res.json({
+            Result: result,
             Id: result.insertId
         });
     });
@@ -27,25 +28,33 @@ module.exports.create = create;
 
 function read (req, res) {
     let id = parseInt(req.params.id, 10);
-    console.log('>>>' + id);
 
     if(id) {
-        conn.query(`SELECT * FROM Genero WHERE idg = ?;`, [id], (err, result) => {
+        conn.query(`SELECT idg as 'id_genero', nombre as 'nombre_genero', descripcion as 'descripcion_genero' FROM Genero WHERE idg = ?;`, [id], (err, result) => {
             if(err) {
                 res.json({
                     Error: err.message
                 });
             }
-            res.json(result);
+            if(result.length == 1) {
+                res.json(result[0]);
+            } else {
+                res.json(result);
+            }
+            
         });
     } else {
-        conn.query(`SELECT * FROM Genero;`, (err, result) => {
+        conn.query(`SELECT idg as 'id_genero', nombre as 'nombre_genero', descripcion as 'descripcion_genero' FROM Genero;`, (err, result) => {
             if(err) {
                 res.json({
                     Error: err.message
                 });
             }
-            res.json(result);
+            if(result.length == 1) {
+                res.json(result[0]);
+            } else {
+                res.json(result);
+            }
         });
     }
 }
