@@ -2,7 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\services",
-    "\\services\\Carrito"
+    "\\services\\Carrito",
+    "\\services\\Carrito\\Config",
+    "\\services\\Carrito\\Controlador",
+    "\\services\\Carrito\\Services"
   ],
+  "SelectedNode": "\\services\\Carrito\\Controlador\\carrito.js",
   "PreviewInSolutionExplorer": false
 }

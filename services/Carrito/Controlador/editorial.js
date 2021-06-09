@@ -11,15 +11,15 @@ var conn = mysql.createConnection({
 function insertar(req, res) {
     let input = req.body;
 
-    if (input.Correo != "") {
+    if (input.correo != "") {
         try {
             conn.query(
                 "INSERT INTO Editorial (nombre, correo, password, direccion, estado) VALUES (?,?,?,?,?)",
-                [input.Nombre, input.Correo, input.Password, input.Direccion, input.Estado],
-                (error, results) => {
+                [input.nombre, input.correo, input.password, input.direccion, input.estado],
+                (error) => {
                     if (error) {
                         res.status(500).json({
-                            Mensaje: "Error de consulta",
+                            Mensaje: "Error en la consulta, verifique los campos de entrada",
                         });
                     } else {
                         res.status(200).json({
@@ -45,15 +45,15 @@ module.exports.insertar = insertar;
 function actualizar(req, res) {
     let input = req.body;
 
-    if (input.Id != "") {
+    if (input.ide != "") {
         try {
             conn.query(
                 "UPDATE Editorial SET nombre = ?, correo = ?, password = ?, direccion = ? WHERE ide = ?",
-                [input.Nombre, input.Correo, input.Password, input.Direccion, input.Id],
-                (error, results) => {
+                [input.nombre, input.correo, input.password, input.direccion, input.ide],
+                (error) => {
                     if (error) {
                         res.status(500).json({
-                            Mensaje: "Error de consulta",
+                            Mensaje: "Error en la consulta, verifique los campos de entrada",
                         });
                     } else {
                         res.status(200).json({
@@ -79,15 +79,15 @@ module.exports.actualizar = actualizar;
 function eliminar(req, res) {
     let input = req.body;
 
-    if (input.Id != "") {
+    if (input.ide != "") {
         try {
             conn.query(
                 "UPDATE Editorial SET estado = ? WHERE ide = ?",
-                [input.Estado, input.Id],
-                (error, results) => {
+                [input.estado, input.ide],
+                (error) => {
                     if (error) {
                         res.status(500).json({
-                            Mensaje: "Error de consulta",
+                            Mensaje: "Error en la consulta, verifique los campos de entrada",
                         });
                     } else {
                         res.status(200).json({
@@ -114,11 +114,11 @@ function leer(req, res) {
 
     try {
         conn.query(
-            "SELECT * FROM Editorial",
+            "SELECT ide AS id_editorial, nombre AS nombre_editorial, correo AS correo_editorial, password AS password_editorial, direccion AS direccion_editorial, estado AS estado_editorial FROM Editorial WHERE estado = 1",
             (error, results) => {
                 if (error) {
                     res.status(500).json({
-                        Mensaje: "Error de consulta",
+                        Mensaje: "Error en la consulta",
                     });
                 } else {
                     res.status(200).json({
