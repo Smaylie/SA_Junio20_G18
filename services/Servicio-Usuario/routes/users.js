@@ -15,19 +15,35 @@ router.get('/', function(req, res, next) {
   })
 });
 
-//POST de eliminacion
-router.post('/eliminar', function(req, res, next) {
+//POST de eliminacion cliente
+router.post('/eliminar/cliente', function(req, res, next) {
   //obtengo parametros del body
-  let idc = req.body.idc;
+  let id = req.body.id;
 
   //realizo el query
-  let query = "DELETE FROM Cliente WHERE idc = " + idc + ";";
+  let query = "UPDATE Cliente SET estado = 0 WHERE idc = " + id + ";";
 
   //mando a correr el query
   conexion.select_from(query).then(function(resultado){
-    res.send(JSON.stringify({codigo:201, mensaje:"Insertado correctamente"}));
+    res.send(JSON.stringify({success:true, mensaje:"Eliminado correctamente"}));
   }).catch(function(err){
-    res.send(JSON.stringify({codigo:406, mensaje:err}));
+    res.send(JSON.stringify({success:false, mensaje:err}));
+  })
+});
+
+//POST de eliminacion editorial
+router.post('/eliminar/editorial', function(req, res, next) {
+  //obtengo parametros del body
+  let id = req.body.id;
+
+  //realizo el query
+  let query = "UPDATE Editorial SET estado = 0 WHERE ide = " + id + ";";
+
+  //mando a correr el query
+  conexion.select_from(query).then(function(resultado){
+    res.send(JSON.stringify({success:true, mensaje:"Eliminado correctamente"}));
+  }).catch(function(err){
+    res.send(JSON.stringify({success:false, mensaje:err}));
   })
 });
 
@@ -37,7 +53,7 @@ router.post('/modificar', function(req, res, next) {
   conexion.select_from(query).then(function(resultado){
 
   }).catch(function(err){
-
+    
   })
 });
 
