@@ -6,6 +6,7 @@ const editorial = require('../Controlador/editorial');
 
 router.route('/carrito/insertar').post(carrito.insertar)
 router.route('/carrito/actualizar').put(carrito.actualizar)
+router.route('/carrito/leer').get(carrito.leer)
 
 router.route('/editorial/insertar').post(editorial.insertar)
 router.route('/editorial/actualizar').put(editorial.actualizar)

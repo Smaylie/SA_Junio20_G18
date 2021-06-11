@@ -24,9 +24,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //agrego los routers
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/login', loginRouter);
-app.use('/signup', signupRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/login', loginRouter);
+app.use('/api/signup', signupRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
