@@ -1,0 +1,27 @@
+<table class="table table-striped caption-top">
+    <caption>LISTADO DE LIBROS</caption>
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">nombre</th>
+        <th scope="col">Autor</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Actualizar</th>
+        <th scope="col">Eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-template ngFor let-libro [ngForOf]="arrLibros" let-i="index" >
+        <tr *ngIf="libro.estado == 1 && libro.editorial == idEditorial;"> 
+            <th scope="row">{{ (i + 1) }}</th>
+            <td><input type="text" name="nombre{{libro.idl}}Input" id="nombre{{libro.idl}}Input" value="{{libro.nombre}}"></td>
+            <td><input type="text" name="autor{{libro.idl}}Input" id="autor{{libro.idl}}Input" value="{{libro.autor}}"></td>
+            <td><input type="number" name="precio{{libro.idl}}Input" id="precio{{libro.idl}}Input" value="{{libro.precio}}"></td>
+            <td><input type="number" name="cantidad{{libro.idl}}Input" id="cantidad{{libro.idl}}Input" value="{{libro.cantidad}}"></td>
+            <td><button class="btn btn-warning" (click)="actualizarLibro('nombre' + libro.idl + 'Input', 'autor' + libro.idl + 'Input', 'precio' + libro.idl + 'Input', 'cantidad' + libro.idl + 'Input')">actualizar</button></td>
+            <td><button class="btn btn-danger" (click)="eliminarLibro(libro.idl)">eliminar</button></td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>

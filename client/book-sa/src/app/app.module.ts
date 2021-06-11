@@ -15,6 +15,8 @@ import { BooksComponent } from './books/books.component';
 import { CarritoComponent } from './carrito/carrito.component';
 import { CbooksComponent } from './cbooks/cbooks.component';
 import { CompraComponent } from './compra/compra.component';
+import { CrudbooksComponent } from './crudbooks/crudbooks.component';
+import { EbooksComponent } from './ebooks/ebooks.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { CompraComponent } from './compra/compra.component';
     BooksComponent,
     CarritoComponent,
     CbooksComponent,
-    CompraComponent
+    CompraComponent,
+    CrudbooksComponent,
+    EbooksComponent
   ],
   imports: [
     BrowserModule,
