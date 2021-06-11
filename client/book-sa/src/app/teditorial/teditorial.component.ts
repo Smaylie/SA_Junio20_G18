@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServiciosService } from '../servicios.service';
 
 @Component({
   selector: 'app-teditorial',
@@ -7,62 +8,47 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeditorialComponent implements OnInit {
 
-  constructor() { }
+  constructor(private servicio: ServiciosService) { }
 
   ngOnInit(): void {
+    this.getEditoriales();
   }
   // estado editoriales: 0 - eliminada, 1 - creada, 2 - pendiente aceptar
-  arrEditoriales: any = [
-    {
-      nombre: 'Editorial 1',
-      ide: 1,
-      correo: 'editoria1@gmail.com',
-      direccion: 'direccion 1',
-      estado: 1
-    },
-    {
-      nombre: 'Editorial 2',
-      ide: 2,
-      correo: 'editoria1@gmail.com',
-      direccion: 'direccion 1',
-      estado: 0
-    },
-    {
-      nombre: 'Editorial 3',
-      ide: 3,
-      correo: 'editoria1@gmail.com',
-      direccion: 'direccion 1',
-      estado: 1
-    },
-    {
-      nombre: 'Editorial 4',
-      ide: 4,
-      correo: 'editoria1@gmail.com',
-      direccion: 'direccion 1',
-      estado: 2
-    },
-    {
-      nombre: 'Editorial 5',
-      ide: 5,
-      correo: 'editoria1@gmail.com',
-      direccion: 'direccion 1',
-      estado: 1
-    },
-    {
-      nombre: 'Editorial 6',
-      ide: 6,
-      correo: 'editoria1@gmail.com',
-      direccion: 'direccion 1',
-      estado: 1
-    },
-  ];
+  arrEditoriales: any = [];
 
-  eliminarEditorial(idEditorial: any){
-    console.log(idEditorial);
+  deleteEditorial: any = {
+    id: 0,
   }
 
-  aceptarEditorial(idEditorial: any){
-    console.log(idEditorial);
+  getEditoriales() {
+    this.servicio.getEditoriales()
+      .subscribe((res) => {
+        this.arrEditoriales = res;
+      })
+  }
+
+  eliminarEditorial(idEditorial: any){
+    this.deleteEditorial.id = idEditorial;
+    
+    this.servicio.deleteEditorial(this.deleteEditorial)
+      .subscribe((res) => {
+        alert('editorial eliminado! 🥺');
+        this.getEditoriales();
+      }, (err) => {
+        alert('ocurrio un error! 😖');
+      })
+  }
+
+  aceptEditorial(idEditorial: any){
+    this.deleteEditorial.id = idEditorial;
+    
+    this.servicio.aceptarEditorial(this.deleteEditorial)
+      .subscribe((res) => {
+        alert('editorial aceptada! 📖');
+        this.getEditoriales();
+      }, (err) => {
+        alert('ocurrio un error! 😖');
+      })
   }
 
 }

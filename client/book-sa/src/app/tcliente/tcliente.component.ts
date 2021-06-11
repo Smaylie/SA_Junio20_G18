@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServiciosService } from '../servicios.service';
 
 @Component({
   selector: 'app-tcliente',
@@ -7,76 +8,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TclienteComponent implements OnInit {
 
-  constructor() { }
+  constructor(private servicio: ServiciosService) { }
 
   ngOnInit(): void {
+    this.getClientes();
   }
 
-  arrClientes: any = [
-    {
-      idc: 1,
-      nombres: 'Ricardo Antonio',
-      apellidos: 'Alvarado Ramirez',
-      correo: 'rick@gmail.com',
-      password: '666',
-      telefono: '55554444',
-      estado: 1,
-      tipo: 1
-    },
-    {
-      idc: 2,
-      nombres: 'Ricardo Antonio',
-      apellidos: 'Alvarado Ramirez',
-      correo: 'rick@gmail.com',
-      password: '666',
-      telefono: '55554444',
-      estado: 1,
-      tipo: 1
-    },
-    {
-      idc: 3,
-      nombres: 'Ricardo Antonio',
-      apellidos: 'Alvarado Ramirez',
-      correo: 'rick@gmail.com',
-      password: '666',
-      telefono: '55554444',
-      estado: 1,
-      tipo: 1
-    },
-    {
-      idc: 4,
-      nombres: 'Ricardo Antonio',
-      apellidos: 'Alvarado Ramirez',
-      correo: 'rick@gmail.com',
-      password: '666',
-      telefono: '55554444',
-      estado: 0,
-      tipo: 1
-    },
-    {
-      idc: 5,
-      nombres: 'Ricardo Antonio',
-      apellidos: 'Alvarado Ramirez',
-      correo: 'rick@gmail.com',
-      password: '666',
-      telefono: '55554444',
-      estado: 1,
-      tipo: 1
-    },
-    {
-      idc: 6,
-      nombres: 'Ricardo Antonio',
-      apellidos: 'Alvarado Ramirez',
-      correo: 'rick@gmail.com',
-      password: '666',
-      telefono: '55554444',
-      estado: 1,
-      tipo: 2
-    },
-  ];
+  arrClientes: any = [];
+
+  deleteCliente: any = {
+    id: 0,
+  }
+
+  getClientes() {
+    this.servicio.getClientes()
+      .subscribe((res) => {
+        this.arrClientes = res;
+      });
+  }
 
   eliminarUsuario(idCliente: any){
-    console.log(idCliente);
+    this.deleteCliente.id = idCliente
+    this.servicio.deleteClientes(this.deleteCliente)
+      .subscribe((res) => {
+        alert('cliente eliminado! 🥺');
+        this.getClientes();
+      }, (err) => {
+        alert('ocurrio un error! 😖');
+      })
   }
 
 }

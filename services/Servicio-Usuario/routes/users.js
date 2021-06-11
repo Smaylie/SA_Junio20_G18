@@ -5,7 +5,7 @@ var conexion = require('../public/javascripts/conexion');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   //realizo el query
-  let query = "Select * from Cliente;"
+  let query = "Select * from Cliente WHERE estado = 1;"
 
   //mando a correr el query
   conexion.select_from(query).then(function(resultado){
@@ -35,7 +35,7 @@ router.post('/eliminar/cliente', function(req, res, next) {
 router.post('/eliminar/editorial', function(req, res, next) {
   //obtengo parametros del body
   let id = req.body.id;
-
+  
   //realizo el query
   let query = "UPDATE Editorial SET estado = 0 WHERE ide = " + id + ";";
 

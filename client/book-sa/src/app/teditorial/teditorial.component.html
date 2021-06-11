@@ -18,7 +18,7 @@
             <td>{{ editorial.correo }}</td>
             <td>{{ editorial.direccion }}</td>
             <td><button *ngIf="editorial.estado == 1 || editorial.estado == 2;" class="btn btn-danger" (click)="eliminarEditorial(editorial.ide)">eliminar</button></td>
-            <td><button *ngIf="editorial.estado == 2;" class="btn btn-warning" (click)="aceptarEditorial(editorial.ide)">aceptar</button></td>
+            <td><button *ngIf="editorial.estado == 2;" class="btn btn-warning" (click)="aceptEditorial(editorial.ide)">aceptar</button></td>
         </tr>
       </ng-template>
     </tbody>

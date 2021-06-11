@@ -16,47 +16,52 @@
                         </div>
                         <div *ngIf="selectedUsuario == 1; else elseBlock">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="nombresInput"
-                                    placeholder="Nombres" />
+                                <input [(ngModel)]="newUser.nombre" type="text" class="form-control" id="nombresInput"
+                                    placeholder="Nombres" name="nombresInput" />
                                 <label for="nombresInput">Nombres</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="apellidosInput"
-                                    placeholder="Apellidos" />
+                                <input [(ngModel)]="newUser.apellidos" type="text" class="form-control" id="apellidosInput"
+                                    placeholder="Apellidos" name="apellidosInput" />
                                 <label for="apellidosInput">Apellidos</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="correoInput"
-                                    placeholder="Correo" />
+                                <input [(ngModel)]="newUser.correo" type="email" class="form-control" id="correoInput"
+                                    placeholder="Correo" name="correoInput" />
                                 <label for="correoInput">Correo</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="passwordInput" placeholder="Contraseña" />
+                                <input [(ngModel)]="newUser.password" type="password" class="form-control" id="passwordInput" 
+                                    placeholder="Contraseña" name="passwordInput" />
                                 <label for="passwordInput">Contraseña</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="number" class="form-control" id="celularInput"
-                                    placeholder="Celular" />
+                                <input [(ngModel)]="newUser.telefono" type="number" class="form-control" id="celularInput"
+                                    placeholder="Celular" name="celularInput" />
                                 <label for="celularInput">Celular</label>
                             </div>
                         </div>
                         <ng-template #elseBlock>
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="nombreEInput"
-                                    placeholder="Nombre de Editorial" />
+                                <input [(ngModel)]="newEditorial.nombre" type="text" class="form-control" id="nombreEInput"
+                                    placeholder="Nombre de Editorial" name="nombreEInput"/>
                                 <label for="nombreEInput">Nombre de Editorial</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="correoEInput"
-                                    placeholder="Correo" />
+                                <input [(ngModel)]="newEditorial.correo" type="email" class="form-control" id="correoEInput"
+                                    placeholder="Correo" name="correoEInput"/>
                                 <label for="correoEInput">Correo</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="passwordEInput" placeholder="Contraseña" />
+                                <input [(ngModel)]="newEditorial.password" type="password" class="form-control" id="passwordEInput" placeholder="Contraseña" name="passwordEInput" />
                                 <label for="passwordEInput">Contraseña</label>
                             </div>
+                            <div class="form-floating mb-3">
+                                <input [(ngModel)]="newEditorial.direccion" type="text" class="form-control" id="direccionEInput" placeholder="Direccion" name="direccionEInput" />
+                                <label for="direccionEInput">Direccion</label>
+                            </div>
                         </ng-template>
-                        <button class="btn btn-primary">Registrarse</button>
+                        <button class="btn btn-primary" (click)="postNew()">Registrarse</button>
                     </form>
                 </div>
                 <div class="card-footer text-muted"><a href="/login">Ingresar a BookSA!</a></div>

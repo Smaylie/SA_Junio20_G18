@@ -11,7 +11,7 @@ router.post('/cliente', function(req,res,next){
   let query = "SELECT idc, nombres, apellidos, correo, telefono, estado, tipo "
   query += "FROM Cliente ";
   query += "WHERE Cliente.correo = '" + usuario + "' ";
-  query += "AND Cliente.password = '" + contra + "';";
+  query += "AND Cliente.password = '" + contra + "' AND Cliente.estado = 1;";
   //console.log(query);
 
   //mando a correr el query
@@ -47,7 +47,7 @@ router.post('/editorial', function(req,res,next){
   let query = "SELECT ide, nombre, correo, direccion, estado "
   query += "FROM Editorial ";
   query += "WHERE Editorial.correo = '" + usuario + "' ";
-  query += "AND Editorial.password = '" + contra + "';";
+  query += "AND Editorial.password = '" + contra + "' AND Editorial.estado = 1;";
   //console.log(query);
 
   //mando a correr el query
