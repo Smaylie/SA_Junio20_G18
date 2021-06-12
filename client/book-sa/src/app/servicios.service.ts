@@ -14,7 +14,39 @@ const httpOptions = {
 })
 export class ServiciosService {
 
+  USUARIO_LOG: any;
+  PRODUCTO_VER: any;
+  CARRITO_LOG: any;
+  LOGED: any;
+
   constructor(private http: HttpClient, private router: Router) { }
+
+  setLoged(valor: boolean) {
+    localStorage.setItem('loged', JSON.stringify(valor));
+  }
+
+  getLoged() {
+    this.LOGED = JSON.parse(localStorage.getItem('loged'));
+    return this.LOGED;
+  }
+
+  setCarrito(carrito) {
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+  }
+
+  getCarrito() {
+    this.CARRITO_LOG = JSON.parse(localStorage.getItem('carrito'));
+    return this.CARRITO_LOG;
+  }
+
+  setLog(usuario) {
+    localStorage.setItem('usuario', JSON.stringify(usuario));
+  }
+
+  getLog() {
+    this.USUARIO_LOG = JSON.parse(localStorage.getItem('usuario'));
+    return this.USUARIO_LOG;
+  }
 
   postUsuario(usuario) {
     return this.http.post('http://localhost:3000/api/signup', usuario, httpOptions);
