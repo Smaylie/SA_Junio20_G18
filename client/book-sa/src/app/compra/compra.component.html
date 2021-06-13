@@ -1,0 +1,70 @@
+<app-barrasup></app-barrasup>
+
+<div class="container" style="margin-top: 30px;">
+    <h1>Información de compra</h1>
+    <hr><br><br>
+    <div class="row justify-content-center align-items-center" style="height: 80vh !important;">
+        <div class="col-md-6">
+            <div class="card text-center">
+                <div class="card-header">Checkout</div>
+                <div class="card-body">
+                    <h3 class="card-title">Metodo de pago</h3>
+                    <form>
+                        <div class="mb-3">
+                            <select [(ngModel)]="selectedPago" name="tipoPagoSelect" id="tipoPagoSelect" class="form-select">
+                              <option value="1">Contra entrega</option>
+                              <option value="2">TC</option>
+                            </select>
+                        </div>
+                        <div *ngIf="selectedPago == 1; else elseBlock">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="nombresInput" name="nombresInput"
+                                    placeholder="Nombre" [(ngModel)]="compraEntrega.nombre" />
+                                <label for="nombresInput">Nombre</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="direccionInput" name="direccionInput"
+                                    placeholder="Dirección" [(ngModel)]="compraEntrega.direccion" />
+                                <label for="direccionInput">Dirección</label>
+                            </div>
+                        </div>
+                        <ng-template #elseBlock>
+                            <div class="form-floating mb-3">
+                                <input type="number" class="form-control" id="tarjetaInput" name="tarjetaInput"
+                                    placeholder="Numero de tarjeta" [(ngModel)]="compraTC.tarjeta" />
+                                <label for="tarjetaInput">Numero de tarjeta</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="fechaInput" name="fechaTCInput"
+                                    placeholder="Fecha de vencimiento" [(ngModel)]="compraTC.fecha" />
+                                <label for="fechaInput">Fecha de vencimiento</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="number" class="form-control" id="cvvIntup" name="cvvIntup"
+                                    placeholder="cvv"  [(ngModel)]="compraTC.cvv" />
+                                <label for="cvvIntup">cvv</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="direccionInput" name="direccionTCInput"
+                                    placeholder="Dirección" [(ngModel)]="compraTC.direccion" />
+                                <label for="direccionInput">Dirección</label>
+                            </div>
+                        </ng-template>
+                        <h3 class="card-title">Información del cliente</h3>
+                        <ul class="list-group list-group-flush" style="text-align: left !important;">
+                            <li class="list-group-item">Nombres: {{ usuario.nombres }}</li>
+                            <li class="list-group-item">Apellidos: {{ usuario.apellidos }}</li>
+                            <li class="list-group-item">Correo: {{ usuario.correo }}</li>
+                        </ul>
+                        <button type="submit" class="btn btn-primary" 
+                            (click)="eliminarDeCarrito()"
+                            *ngIf="(compraEntrega.nombre != '' && compraEntrega.direccion != '') || (compraTC.tarjeta != '' && compraTC.fecha != '' && compraTC.cvv != '' && compraTC.direccion != '')">
+                            Realizar compra
+                        </button>
+                    </form>
+                </div>
+                <div class="card-footer text-muted"><a href="/mi-carrito">Regresar a carrito</a></div>
+            </div>
+        </div>
+    </div>
+</div>

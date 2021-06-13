@@ -1,0 +1,23 @@
+<table class="table table-striped caption-top">
+    <caption>Listado de clientes</caption>
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombres</th>
+        <th scope="col">Apellidos</th>
+        <th scope="col">Correo</th>
+        <th scope="col">Eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-template ngFor let-cliente [ngForOf]="arrClientes" let-i="index" >
+        <tr *ngIf="cliente.estado == 1 && cliente.tipo == 1;">
+            <th scope="row">{{ (i + 1) }}</th>
+            <td>{{ cliente.nombres }}</td>
+            <td>{{ cliente.apellidos }}</td>
+            <td>{{ cliente.correo }}</td>
+            <td><button class="btn btn-danger" (click)="eliminarUsuario(cliente.idc)">eliminar</button></td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>

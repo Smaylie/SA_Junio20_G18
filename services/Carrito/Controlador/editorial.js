@@ -44,14 +44,15 @@ module.exports.insertar = insertar;
 
 function actualizar(req, res) {
     let input = req.body;
-
-    if (input.ide != "") {
+    console.log(input);
+    if (input.id != "") {
         try {
             conn.query(
-                "UPDATE Editorial SET nombre = ?, correo = ?, password = ?, direccion = ? WHERE ide = ?",
-                [input.nombre, input.correo, input.password, input.direccion, input.ide],
+                "UPDATE Editorial SET Estado = 1 WHERE ide = ?",
+                [input.id],
                 (error) => {
                     if (error) {
+                        console.log(error);
                         res.status(500).json({
                             Mensaje: "Error en la consulta, verifique los campos de entrada",
                         });
@@ -114,16 +115,14 @@ function leer(req, res) {
 
     try {
         conn.query(
-            "SELECT ide AS id_editorial, nombre AS nombre_editorial, correo AS correo_editorial, password AS password_editorial, direccion AS direccion_editorial, estado AS estado_editorial FROM Editorial WHERE estado = 1",
+            "SELECT * FROM Editorial WHERE estado > 0",
             (error, results) => {
                 if (error) {
                     res.status(500).json({
                         Mensaje: "Error en la consulta",
                     });
                 } else {
-                    res.status(200).json({
-                        Editoriales: results,
-                    });
+                    res.status(200).json(results);
                 }
             }
         );

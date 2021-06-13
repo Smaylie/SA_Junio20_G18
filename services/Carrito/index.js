@@ -7,7 +7,7 @@ const router = require('./Services/router');
 const port = process.env.PORT || 3010;
 
 const dbConfig = require("./Config/database");
-//Conexión a la base de datos
+//Conexiï¿½n a la base de datos
 var connection = mysql.createConnection({
     host: dbConfig.hrPool.host,
     user: dbConfig.hrPool.user,
@@ -17,7 +17,7 @@ var connection = mysql.createConnection({
 
 const app = express().use(cors()).use(bodyParser()).use('/api', router);
 
-app.get("/", (req, res) => { });
+app.get("/", (req, res) => { res.end() });
 
 app.listen(port, (err) => {
     if (err) console.log('Ocurrio un error'), process.exit(1);
