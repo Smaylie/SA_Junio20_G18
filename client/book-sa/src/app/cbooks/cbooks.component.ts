@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ServiciosService } from '../servicios.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cbooks',
@@ -7,122 +9,63 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CbooksComponent implements OnInit {
 
-  constructor() { }
+  constructor(private servicio: ServiciosService, private router: Router) { }
 
   ngOnInit(): void {
-    this.calcularTotal();
+    this.obtenerUsuario();
+  }
+
+  obtenerUsuario() {
+    this.usuario = this.servicio.getLog();
+    this.idCarrito.cliente = this.usuario.idc;
+    this.obtenerCarrito();
   }
 
   calcularTotal() {
-    this.arrLibros.forEach(element => {
-      this.totalCarrito += parseFloat(element.precio);
-    });
+    if(this.arrLibros.length != 0) {
+      this.arrLibros.forEach(element => {
+        this.totalCarrito += parseFloat(element.precio_libro);
+      });
+    }
 
     this.totalCarrito = this.totalCarrito.toFixed(2);
   }
 
-  totalCarrito: any = 0;
+  obtenerCarrito() {
+    console.log(this.idCarrito.cliente);
+    this.servicio.getSCarrito(this.idCarrito.cliente)
+      .subscribe((res) => {
+        this.carro = res;
+        this.arrLibros = this.carro.results;
+        this.calcularTotal();
+      }, (err)  => {
+        console.error(err);
+      })
+  }
 
-  arrLibros: any = [
-    {
-      idl: 1,
-      nombre: 'hola',
-      autor: 'juan benito',
-      precio: '25.40',
-      cantidad: 34,
-      estado: 1,
-      imagen: 'https://danielbadosa.com/wp-content/uploads/2020/05/00.-c%C3%B3mo-dise%C3%B1ar-la-portada-de-tu-libro-ejemplo-Portada-El-Abandono-1-643x1024.jpg'
-    },
-    {
-      idl: 1,
-      nombre: 'hola',
-      autor: 'juan benito',
-      precio: '25.40',
-      cantidad: 34,
-      estado: 1,
-      imagen: 'https://danielbadosa.com/wp-content/uploads/2020/05/00.-c%C3%B3mo-dise%C3%B1ar-la-portada-de-tu-libro-ejemplo-Portada-El-Abandono-1-643x1024.jpg'
-    },
-    {
-      idl: 1,
-      nombre: 'hola',
-      autor: 'juan benito',
-      precio: '25.40',
-      cantidad: 34,
-      estado: 1,
-      imagen: 'https://danielbadosa.com/wp-content/uploads/2020/05/00.-c%C3%B3mo-dise%C3%B1ar-la-portada-de-tu-libro-ejemplo-Portada-El-Abandono-1-643x1024.jpg'
-    },
-    {
-      idl: 1,
-      nombre: 'hola',
-      autor: 'juan benito',
-      precio: '25.40',
-      cantidad: 34,
-      estado: 1,
-      imagen: 'https://danielbadosa.com/wp-content/uploads/2020/05/00.-c%C3%B3mo-dise%C3%B1ar-la-portada-de-tu-libro-ejemplo-Portada-El-Abandono-1-643x1024.jpg'
-    },
-    {
-      idl: 1,
-      nombre: 'hola',
-      autor: 'juan benito',
-      precio: '25.40',
-      cantidad: 34,
-      estado: 1,
-      imagen: 'https://danielbadosa.com/wp-content/uploads/2020/05/00.-c%C3%B3mo-dise%C3%B1ar-la-portada-de-tu-libro-ejemplo-Portada-El-Abandono-1-643x1024.jpg'
-    },
-    {
-      idl: 1,
-      nombre: 'hola',
-      autor: 'juan benito',
-      precio: '25.40',
-      cantidad: 34,
-      estado: 1,
-      imagen: 'https://danielbadosa.com/wp-content/uploads/2020/05/00.-c%C3%B3mo-dise%C3%B1ar-la-portada-de-tu-libro-ejemplo-Portada-El-Abandono-1-643x1024.jpg'
-    },
-    {
-      idl: 1,
-      nombre: 'hola',
-      autor: 'juan benito',
-      precio: '25.40',
-      cantidad: 34,
-      estado: 1,
-      imagen: 'https://danielbadosa.com/wp-content/uploads/2020/05/00.-c%C3%B3mo-dise%C3%B1ar-la-portada-de-tu-libro-ejemplo-Portada-El-Abandono-1-643x1024.jpg'
-    },
-    {
-      idl: 1,
-      nombre: 'hola',
-      autor: 'juan benito',
-      precio: '25.40',
-      cantidad: 34,
-      estado: 1,
-      imagen: 'https://danielbadosa.com/wp-content/uploads/2020/05/00.-c%C3%B3mo-dise%C3%B1ar-la-portada-de-tu-libro-ejemplo-Portada-El-Abandono-1-643x1024.jpg'
-    },
-    {
-      idl: 1,
-      nombre: 'hola',
-      autor: 'juan benito',
-      precio: '25.40',
-      cantidad: 34,
-      estado: 1,
-      imagen: 'https://danielbadosa.com/wp-content/uploads/2020/05/00.-c%C3%B3mo-dise%C3%B1ar-la-portada-de-tu-libro-ejemplo-Portada-El-Abandono-1-643x1024.jpg'
-    },
-    {
-      idl: 1,
-      nombre: 'hola',
-      autor: 'juan benito',
-      precio: '25.40',
-      cantidad: 34,
-      estado: 1,
-      imagen: 'https://danielbadosa.com/wp-content/uploads/2020/05/00.-c%C3%B3mo-dise%C3%B1ar-la-portada-de-tu-libro-ejemplo-Portada-El-Abandono-1-643x1024.jpg'
-    },
-    {
-      idl: 1,
-      nombre: 'hola',
-      autor: 'juan benito',
-      precio: '25.40',
-      cantidad: 34,
-      estado: 1,
-      imagen: 'https://danielbadosa.com/wp-content/uploads/2020/05/00.-c%C3%B3mo-dise%C3%B1ar-la-portada-de-tu-libro-ejemplo-Portada-El-Abandono-1-643x1024.jpg'
-    },
-  ]
+  eliminarDeCarrito(idCarrito: number) {
+    console.log(idCarrito);
+    this.idEliminar.idr = idCarrito;
+    this.servicio.deleteSCarrito(this.idEliminar)
+      .subscribe((res)  => {
+        this.obtenerCarrito();
+        this.totalCarrito = 0;
+        alert('se elimino correctamente! 🛒❌');
+      }, (err)  => {
+        console.error(err);
+      })
+  }
+
+  carro: any;
+  totalCarrito: any = 0;
+  usuario: any;
+  arrLibros: any = [];
+  idCarrito: any = {
+    cliente: 0
+  }
+  idEliminar: any = {
+    etapa: 0,
+    idr: 0
+  }
 
 }

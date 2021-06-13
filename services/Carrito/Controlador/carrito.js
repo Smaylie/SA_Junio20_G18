@@ -14,8 +14,8 @@ function insertar (req, res, next) {
     if (input.cliente != "") {
         try {
             conn.query(
-                "INSERT INTO Carrito (cliente, libro, etapa) VALUES (?,?,?)",
-                [input.cliente, input.libro, input.etapa],
+                "INSERT INTO Carrito (cliente, libro, etapa) VALUES (?,?,1)",
+                [input.cliente, input.libro],
                 (error, results) => {
                     if (error) {
                         res.status(500).json({
@@ -77,21 +77,22 @@ function actualizar(req, res) {
 module.exports.actualizar = actualizar;
 
 function leer(req, res) {
-    let input = req.body;
-
-    if (input.cliente != "") {
+    let input = parseInt(req.params.id, 10);
+    if (input) {
         try {
             conn.query(
                 "SELECT idr AS id_carrito,cliente AS id_cliente_carrito,etapa AS etapa_libro_encarrito,idl AS id_libro,nombre AS nombre_libro,autor AS autor_libro,precio AS precio_libro,cantidad AS cantidad_libro,estado AS estado_libro,imagen AS imagen_libro,editorial AS id_editorial_libro FROM Carrito, Libro WHERE cliente = ? AND libro = idl AND etapa = 1",
-                [input.cliente],
+                [input],
                 (error, results) => {
                     if (error) {
+                        console.log(error);
                         res.status(500).json({
                             Mensaje: "Error en la consulta, verifique los campos de entrada",
                         });
                     } else {
+                        console.log(results);
                         res.status(200).json({
-                            Carrito: results,
+                            results,
                         });
                     }
                 }

@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       this.servicio.loginCliente(this.userLogin)
         .subscribe((res) => {
           objetoLogin = res;
-          //console.log(res);
+          console.log(res);
           if(objetoLogin.success == true) {
             // existe
             this.apiUser = objetoLogin.datos;
@@ -40,11 +40,15 @@ export class LoginComponent implements OnInit {
               // cliente normal
               alert(`bienvenido ${ this.apiUser.nombres }! 😎`);
               this.apiUser.es = 1;
+              this.servicio.setLoged(true);
+              this.servicio.setLog(this.apiUser);
               this.router.navigateByUrl('/landing-page');
             } else {
               // admin
               alert(`bienvenido ${ this.apiUser.nombres }! 😎`);
               this.apiUser.es = 2;
+              this.servicio.setLoged(true);
+              this.servicio.setLog(this.apiUser);
               this.router.navigateByUrl('/administrador');
             }
           } else {
@@ -63,6 +67,8 @@ export class LoginComponent implements OnInit {
             this.apiUser = objetoLogin.datos;
             alert(`bienvenido ${ this.apiUser.nombre }! 😎`);
             this.apiUser.es = 3;
+            this.servicio.setLoged(true);
+            this.servicio.setLog(this.apiUser);
             this.router.navigateByUrl('/administrar-tienda');
           } else {
             alert('error de acceso! 😖');

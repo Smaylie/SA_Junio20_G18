@@ -83,4 +83,38 @@ export class ServiciosService {
   aceptarEditorial(idEditorial) {
     return this.http.put('http://localhost:3010/api/editorial/actualizar', idEditorial, httpOptions);
   }
+
+  getLibros() {
+    return this.http.get('http://localhost:9000/api/');
+  }
+
+  deleteLibros(idLibro) {
+    return this.http.delete('http://localhost:9000/api/'+idLibro);
+  }
+
+  updateLibros(idlibro:number, libro:any) {
+    return this.http.put('http://localhost:9000/api/'+idlibro, libro, httpOptions);
+  }
+
+  postLibro(libro: any) {
+    return this.http.post('http://localhost:9000/api/', libro, httpOptions);
+  }
+
+  uploadImage(imagenSubida: File) {
+    const formData = new FormData();
+    formData.append('libroImage', imagenSubida);
+    return this.http.post('http://localhost:9000/imagenlibro', formData);
+  }
+
+  postCarrito(objCarrito) {
+    return this.http.post('http://localhost:3010/api/carrito/insertar', objCarrito, httpOptions);
+  }
+
+  getSCarrito(cliente: number) {
+    return this.http.get('http://localhost:3010/api/carrito/leer/'+cliente);
+  }
+
+  deleteSCarrito(objEliminar: any) {
+    return this.http.put('http://localhost:3010/api/carrito/actualizar', objEliminar, httpOptions);
+  }
 }

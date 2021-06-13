@@ -13,10 +13,12 @@ routes.get('/',(req,res)=>{
     })
 })
 routes.post('/',(req,res)=>{
+    let nuevoLibro = req.body;
+    nuevoLibro.imagen = 'http://localhost:9000/uploads/' + nuevoLibro.imagen;
     req.getConnection((err,conn)=>{
         if(err) return res.send(err)
         
-        conn.query('INSERT INTo Libro set ?',[req.body], (err,rows)=>{
+        conn.query('INSERT INTo Libro set ?',[nuevoLibro], (err,rows)=>{
             if(err) return res.send(err)
 
             res.send('El libro ha sido registrado')
@@ -27,7 +29,7 @@ routes.delete('/:id',(req,res)=>{
     req.getConnection((err,conn)=>{
         if(err) return res.send(err)
         
-        conn.query('DELETE FROM Libro WHERE idl= ?',[req.params.id], (err,rows)=>{
+        conn.query('UPDATE Libro SET estado = 0 WHERE idl= ?',[parseInt(req.params.id, 10)], (err,rows)=>{
             if(err) return res.send(err)
 
             res.send('El libro ha sido Eliminado')
@@ -38,7 +40,7 @@ routes.put('/:id',(req,res)=>{
     req.getConnection((err,conn)=>{
         if(err) return res.send(err)
         
-        conn.query('UPDATE Libro SET ? WHERE idl= ?',[req.body,req.params.id], (err,rows)=>{
+        conn.query('UPDATE Libro SET ? WHERE idl= ?',[req.body,parseInt(req.params.id, 10)], (err,rows)=>{
             if(err) return res.send(err)
 
             res.send('El libro ha sido Actualizado')

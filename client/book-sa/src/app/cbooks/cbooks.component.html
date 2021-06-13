@@ -4,14 +4,14 @@
     </div>
     <div class="row row-cols-1 row-cols-md-4 g-4">
         <ng-template ngFor let-libro [ngForOf]="arrLibros" let-i="index">
-            <div class="col" *ngIf="libro.estado == 1;">
+            <div class="col" *ngIf="libro.estado_libro == 1;">
                 <div class="card" style="margin-top: 20px;">
-                    <img src="{{libro.imagen}}" class="card-img-top" alt="...">
+                    <img src="{{libro.imagen_libro}}" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Titulo: {{ libro.nombre }}</h5>
-                        <p class="card-text">Autor: {{ libro.autor }}</p>
-                        <p class="card-text">Precio: {{ libro.precio }}</p>
-                        <a href="#" class="btn btn-danger">Eliminar</a>
+                        <h5 class="card-title">Titulo: {{ libro.nombre_libro }}</h5>
+                        <p class="card-text">Autor: {{ libro.autor_libro }}</p>
+                        <p class="card-text">Precio: {{ libro.precio_libro }}</p>
+                        <button type="button" class="btn btn-danger" (click)="eliminarDeCarrito(libro.id_carrito)">Eliminar</button>
                     </div>
                 </div>
             </div>

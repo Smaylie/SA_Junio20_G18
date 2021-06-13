@@ -1,14 +1,14 @@
 <div class="container">
     <div class="row row-cols-1 row-cols-md-4 g-4">
         <ng-template ngFor let-libro [ngForOf]="arrLibros" let-i="index">
-            <div class="col" *ngIf="libro.estado == 1;">
+            <div class="col" *ngIf="libro.estado == 1 && libro.cantidad > 0;">
                 <div class="card" style="margin-top: 20px;">
                     <img src="{{libro.imagen}}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Titulo: {{ libro.nombre }}</h5>
                         <p class="card-text">Autor: {{ libro.autor }}</p>
                         <p class="card-text">Precio: {{ libro.precio }}</p>
-                        <a href="#" class="btn btn-primary">Añadir</a>
+                        <button class="btn btn-primary" (click)="aniadirCarrito(libro.idl)">Añadir</button>
                     </div>
                 </div>
             </div>

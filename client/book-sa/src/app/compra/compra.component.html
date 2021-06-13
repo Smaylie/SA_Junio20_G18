@@ -18,39 +18,49 @@
                         </div>
                         <div *ngIf="selectedPago == 1; else elseBlock">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="nombresInput"
-                                    placeholder="Nombres" />
-                                <label for="nombresInput">Nombres</label>
+                                <input type="text" class="form-control" id="nombresInput" name="nombresInput"
+                                    placeholder="Nombre" [(ngModel)]="compraEntrega.nombre" />
+                                <label for="nombresInput">Nombre</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="passwordInput" placeholder="Contraseña" />
-                                <label for="passwordInput">Contraseña</label>
+                                <input type="text" class="form-control" id="direccionInput" name="direccionInput"
+                                    placeholder="Dirección" [(ngModel)]="compraEntrega.direccion" />
+                                <label for="direccionInput">Dirección</label>
                             </div>
                         </div>
                         <ng-template #elseBlock>
                             <div class="form-floating mb-3">
-                                <input type="number" class="form-control" id="tarjetaInput"
-                                    placeholder="Numero de tarjeta" />
+                                <input type="number" class="form-control" id="tarjetaInput" name="tarjetaInput"
+                                    placeholder="Numero de tarjeta" [(ngModel)]="compraTC.tarjeta" />
                                 <label for="tarjetaInput">Numero de tarjeta</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="fechaInput"
-                                    placeholder="Fecha de vencimiento" />
+                                <input type="text" class="form-control" id="fechaInput" name="fechaTCInput"
+                                    placeholder="Fecha de vencimiento" [(ngModel)]="compraTC.fecha" />
                                 <label for="fechaInput">Fecha de vencimiento</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="number" class="form-control" id="cvvIntup" placeholder="cvv" />
+                                <input type="number" class="form-control" id="cvvIntup" name="cvvIntup"
+                                    placeholder="cvv"  [(ngModel)]="compraTC.cvv" />
                                 <label for="cvvIntup">cvv</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="direccionInput" name="direccionTCInput"
+                                    placeholder="Dirección" [(ngModel)]="compraTC.direccion" />
+                                <label for="direccionInput">Dirección</label>
                             </div>
                         </ng-template>
                         <h3 class="card-title">Información del cliente</h3>
                         <ul class="list-group list-group-flush" style="text-align: left !important;">
-                            <li class="list-group-item">Nombres: {{ cliente.nombres }}</li>
-                            <li class="list-group-item">Apellidos: {{ cliente.apellidos }}</li>
-                            <li class="list-group-item">Correo: {{ cliente.correo }}</li>
-                            <li class="list-group-item">Dirección: {{ cliente.direccion }}</li>
+                            <li class="list-group-item">Nombres: {{ usuario.nombres }}</li>
+                            <li class="list-group-item">Apellidos: {{ usuario.apellidos }}</li>
+                            <li class="list-group-item">Correo: {{ usuario.correo }}</li>
                         </ul>
-                        <button class="btn btn-primary">Realizar compra</button>
+                        <button type="submit" class="btn btn-primary" 
+                            (click)="eliminarDeCarrito()"
+                            *ngIf="(compraEntrega.nombre != '' && compraEntrega.direccion != '') || (compraTC.tarjeta != '' && compraTC.fecha != '' && compraTC.cvv != '' && compraTC.direccion != '')">
+                            Realizar compra
+                        </button>
                     </form>
                 </div>
                 <div class="card-footer text-muted"><a href="/mi-carrito">Regresar a carrito</a></div>

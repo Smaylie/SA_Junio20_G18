@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ServiciosService } from '../servicios.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-books',
@@ -7,102 +9,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BooksComponent implements OnInit {
 
-  constructor() { }
+  constructor(private servicio: ServiciosService, private router: Router) { }
 
   ngOnInit(): void {
+    this.obtenerLibros();
+    this.obtenerUsuario();
+    //console.log(this.usuario);
   }
 
-  arrLibros: any = [
-    {
-      idl: 1,
-      nombre: 'hola',
-      autor: 'juan benito',
-      precio: '25.30',
-      cantidad: 34,
-      estado: 1,
-      imagen: 'https://danielbadosa.com/wp-content/uploads/2020/05/00.-c%C3%B3mo-dise%C3%B1ar-la-portada-de-tu-libro-ejemplo-Portada-El-Abandono-1-643x1024.jpg'
-    },
-    {
-      idl: 1,
-      nombre: 'hola',
-      autor: 'juan benito',
-      precio: '25.30',
-      cantidad: 34,
-      estado: 1,
-      imagen: 'https://danielbadosa.com/wp-content/uploads/2020/05/00.-c%C3%B3mo-dise%C3%B1ar-la-portada-de-tu-libro-ejemplo-Portada-El-Abandono-1-643x1024.jpg'
-    },
-    {
-      idl: 1,
-      nombre: 'hola',
-      autor: 'juan benito',
-      precio: '25.30',
-      cantidad: 34,
-      estado: 1,
-      imagen: 'https://danielbadosa.com/wp-content/uploads/2020/05/00.-c%C3%B3mo-dise%C3%B1ar-la-portada-de-tu-libro-ejemplo-Portada-El-Abandono-1-643x1024.jpg'
-    },
-    {
-      idl: 1,
-      nombre: 'hola',
-      autor: 'juan benito',
-      precio: '25.30',
-      cantidad: 34,
-      estado: 1,
-      imagen: 'https://danielbadosa.com/wp-content/uploads/2020/05/00.-c%C3%B3mo-dise%C3%B1ar-la-portada-de-tu-libro-ejemplo-Portada-El-Abandono-1-643x1024.jpg'
-    },
-    {
-      idl: 1,
-      nombre: 'hola',
-      autor: 'juan benito',
-      precio: '25.30',
-      cantidad: 34,
-      estado: 1,
-      imagen: 'https://danielbadosa.com/wp-content/uploads/2020/05/00.-c%C3%B3mo-dise%C3%B1ar-la-portada-de-tu-libro-ejemplo-Portada-El-Abandono-1-643x1024.jpg'
-    },
-    {
-      idl: 1,
-      nombre: 'hola',
-      autor: 'juan benito',
-      precio: '25.30',
-      cantidad: 34,
-      estado: 1,
-      imagen: 'https://danielbadosa.com/wp-content/uploads/2020/05/00.-c%C3%B3mo-dise%C3%B1ar-la-portada-de-tu-libro-ejemplo-Portada-El-Abandono-1-643x1024.jpg'
-    },
-    {
-      idl: 1,
-      nombre: 'hola',
-      autor: 'juan benito',
-      precio: '25.30',
-      cantidad: 34,
-      estado: 1,
-      imagen: 'https://danielbadosa.com/wp-content/uploads/2020/05/00.-c%C3%B3mo-dise%C3%B1ar-la-portada-de-tu-libro-ejemplo-Portada-El-Abandono-1-643x1024.jpg'
-    },
-    {
-      idl: 1,
-      nombre: 'hola',
-      autor: 'juan benito',
-      precio: '25.30',
-      cantidad: 34,
-      estado: 1,
-      imagen: 'https://danielbadosa.com/wp-content/uploads/2020/05/00.-c%C3%B3mo-dise%C3%B1ar-la-portada-de-tu-libro-ejemplo-Portada-El-Abandono-1-643x1024.jpg'
-    },
-    {
-      idl: 1,
-      nombre: 'hola',
-      autor: 'juan benito',
-      precio: '25.30',
-      cantidad: 34,
-      estado: 1,
-      imagen: 'https://danielbadosa.com/wp-content/uploads/2020/05/00.-c%C3%B3mo-dise%C3%B1ar-la-portada-de-tu-libro-ejemplo-Portada-El-Abandono-1-643x1024.jpg'
-    },
-    {
-      idl: 1,
-      nombre: 'hola',
-      autor: 'juan benito',
-      precio: '25.30',
-      cantidad: 34,
-      estado: 1,
-      imagen: 'https://danielbadosa.com/wp-content/uploads/2020/05/00.-c%C3%B3mo-dise%C3%B1ar-la-portada-de-tu-libro-ejemplo-Portada-El-Abandono-1-643x1024.jpg'
-    },
-  ]
+  obtenerLibros() {
+    this.servicio.getLibros()
+      .subscribe((res) => {
+        console.log(res);
+        this.arrLibros = res;
+      })
+  }
+
+  obtenerUsuario() {
+    this.usuario = this.servicio.getLog();
+  }
+
+  aniadirCarrito(idLibro: number) {
+    console.log(idLibro);
+    this.nuevoCarrito.cliente = this.usuario.idc;
+    this.nuevoCarrito.libro = idLibro;
+    this.servicio.postCarrito(this.nuevoCarrito)
+      .subscribe((res) => {
+        alert('agregado al carrito! 🛒');
+      }, (err) => {
+        alert('error al agregar! ❌');
+      })
+  }
+
+  arrLibros: any = [];
+  usuario: any;
+  nuevoCarrito: any = {
+    cliente: 0,
+    libro: 0
+  };
 
 }
