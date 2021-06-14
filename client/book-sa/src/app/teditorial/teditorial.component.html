@@ -1,0 +1,25 @@
+<table class="table table-striped caption-top">
+    <caption>Listado de editoriales</caption>
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Editorial</th>
+        <th scope="col">Correo</th>
+        <th scope="col">Direccion</th>
+        <th scope="col">Eliminar</th>
+        <th scope="col">Aceptar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-template ngFor let-editorial [ngForOf]="arrEditoriales" let-i="index" >
+        <tr *ngIf="editorial.estado == 1 || editorial.estado == 2;">
+            <th scope="row">{{ (i + 1) }}</th>
+            <td>{{ editorial.nombre }}</td>
+            <td>{{ editorial.correo }}</td>
+            <td>{{ editorial.direccion }}</td>
+            <td><button *ngIf="editorial.estado == 1 || editorial.estado == 2;" class="btn btn-danger" (click)="eliminarEditorial(editorial.ide)">eliminar</button></td>
+            <td><button *ngIf="editorial.estado == 2;" class="btn btn-warning" (click)="aceptEditorial(editorial.ide)">aceptar</button></td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
