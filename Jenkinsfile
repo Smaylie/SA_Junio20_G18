@@ -30,9 +30,5 @@ pipeline {
                 echo ''
             }
         }
-
-        stage('Deploy'){
-
-        }
     }
 }
