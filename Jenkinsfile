@@ -1,22 +1,36 @@
 pipeline {
     agent any
-    tools {nodejs "node"}
+    tools {nodejs "node"} 
+    stages {
+        stage('Build-Servicios') { 
 
-    node("Este es un dummy"){
-        stage('Build') { 
-            steps {
-                // 
-                echo 'Build'
+            stage("usuario"){
+                steps{
+                    echo 'Usuario1'    
+                }
+            }
+
+            stage("usuario2"){
+                steps{
+                    echo 'Usuario2'
+                }
             }
         }
-    }
-
-    node("Este es un dummy2"){
-        stage('Build2') { 
+        stage('Test-Servicios') { 
             steps {
                 // 
-                echo 'Build2'
+                echo 'Testing'
             }
+        }
+        stage('Release') { 
+            steps {
+                // 
+                echo ''
+            }
+        }
+
+        stage('Deploy'){
+
         }
     }
 }
