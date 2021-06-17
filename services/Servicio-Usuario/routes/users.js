@@ -9,9 +9,11 @@ router.get('/', function(req, res, next) {
 
   //mando a correr el query
   conexion.select_from(query).then(function(resultado){
-    res.send(JSON.stringify(resultado));
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify(resultado));
   }).catch(function(err){
-    res.send(JSON.stringify({Mensaje:"Error en obtener listado de clientes: " + err}));
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({Mensaje:"Error en obtener listado de clientes: " + err}));
   })
 });
 
@@ -25,9 +27,11 @@ router.post('/eliminar/cliente', function(req, res, next) {
 
   //mando a correr el query
   conexion.select_from(query).then(function(resultado){
-    res.send(JSON.stringify({success:true, mensaje:"Eliminado correctamente"}));
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({success:true, mensaje:"Eliminado correctamente"}));
   }).catch(function(err){
-    res.send(JSON.stringify({success:false, mensaje:err}));
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({success:false, mensaje:err}));
   })
 });
 
@@ -41,9 +45,11 @@ router.post('/eliminar/editorial', function(req, res, next) {
 
   //mando a correr el query
   conexion.select_from(query).then(function(resultado){
-    res.send(JSON.stringify({success:true, mensaje:"Eliminado correctamente"}));
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({success:true, mensaje:"Eliminado correctamente"}));
   }).catch(function(err){
-    res.send(JSON.stringify({success:false, mensaje:err}));
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({success:false, mensaje:err}));
   })
 });
 

@@ -26,9 +26,11 @@ router.post('/', function(req, res, next) {
 
     //mando a correr el query
     con.neutral_query(query).then(function(resultado){
-        res.send(JSON.stringify({codigo:201, mensaje:"Insertado correctamente"}));
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify({codigo:201, mensaje:"Insertado correctamente"}));
     }).catch(function(err){
-        res.send(JSON.stringify({codigo:406, mensaje:err}));
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify({codigo:406, mensaje:err}));
     })
 });
 
