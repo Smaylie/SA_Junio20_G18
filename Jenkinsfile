@@ -13,6 +13,7 @@ pipeline {
                 stage("usuario2"){
                     steps{
                         echo 'Usuario2'
+                        cd "hola"
                     }
                 }
             }
