@@ -12,7 +12,9 @@ pipeline{
                 sh "npm install"
             }
             post{
-                echo "======== Terminando Build ========"
+                always{
+                    echo "======== Terminando Build ========"
+                }
             }
         }
 
@@ -24,7 +26,9 @@ pipeline{
                 sh "npm test"
             }
             post{
-                echo "======== Terminando Tests ========"
+                always{
+                    echo "======== Terminando Tests ========"   
+                }
             }
         }
 
@@ -34,7 +38,9 @@ pipeline{
                 echo "aqui deberia empaquetar"
             }
             post{
-                echo "======== Terminando Release ========"
+                always{
+                    echo "======== Terminando Release ========"
+                }
             }
         }
 
@@ -44,11 +50,14 @@ pipeline{
                 echo "aqui deberia hacer el deploy con fabric"
             }
             post{
-                echo "======== Terminando Deploy ========"
+                always{
+                    echo "======== Terminando Deploy ========"   
+                }
             }
         }
 
     }
+
     post{
         always{
             echo "========always========"
