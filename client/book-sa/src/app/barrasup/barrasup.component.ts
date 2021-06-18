@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ServiciosService } from '../servicios.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-barrasup',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BarrasupComponent implements OnInit {
 
-  constructor() { }
+  constructor(private servicio: ServiciosService, private router: Router) { }
 
   ngOnInit(): void {
+    this.verificar = this.servicio.getLoged();
+    if(this.verificar){
+      this.obtenerUsuario();
+    }
   }
+
+  obtenerUsuario() {
+    this.usuario = this.servicio.getLog();
+  }
+
+  verificarLogin() {
+    this.servicio.getLoged()
+  }
+
+  usuario: any;
+  verificar: any;
 
 }

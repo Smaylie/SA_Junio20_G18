@@ -13,15 +13,42 @@ routes.get('/',(req,res)=>{
     })
 })
 routes.post('/',(req,res)=>{
-    let nuevoLibro = req.body;
+    let nuevoLibro = {
+        nombre: req.body.nombre,
+        autor: req.body.autor,
+        precio: req.body.precio,
+        cantidad: req.body.cantidad,
+        estado: req.body.estado,
+        imagen: req.body.imagen,
+        editorial: req.body.editorial
+      }
+    let generos = req.body.generos;
+    console.log(generos);
     nuevoLibro.imagen = 'http://localhost:9000/uploads/' + nuevoLibro.imagen;
     req.getConnection((err,conn)=>{
         if(err) return res.send(err)
         
         conn.query('INSERT INTo Libro set ?',[nuevoLibro], (err,rows)=>{
-            if(err) return res.send(err)
-
-            res.send('El libro ha sido registrado')
+            if(err) {
+                res.status(500).json({Mensaje: "error"});
+            } else {
+                console.log(rows.insertId);
+                generos.forEach(element => {
+                    conn.query('INSERT INTO Clasificacion (libro, genero) VALUES (?,?)', 
+                    [rows.insertId, element.id_genero], 
+                    (error, results) => {
+                        if (error) {
+                            console.error(error);
+                        } else {
+                            console.log('ok genero');
+                        }
+                    }
+                    )
+                });
+                res.status(200).json({
+                    Mensaje: "ok",
+                });
+            }
         })
     })
 })

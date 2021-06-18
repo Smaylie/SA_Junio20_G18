@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   constructor(private servicio: ServiciosService, private router: Router) { }
 
   ngOnInit(): void {
+    this.servicio.setLoged(false);
     this.selectedLogin = '1';
   }
 

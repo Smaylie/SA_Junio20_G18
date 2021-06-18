@@ -117,4 +117,8 @@ export class ServiciosService {
   deleteSCarrito(objEliminar: any) {
     return this.http.put('http://localhost:3010/api/carrito/actualizar', objEliminar, httpOptions);
   }
+
+  getGeneros() {
+    return this.http.get('http://localhost:3600/api/genero');
+  }
 }
