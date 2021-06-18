@@ -7,10 +7,11 @@ pipeline{
             steps{
                 echo "Ahora vamos a iniciar con el pipeline para servicio de usuario"
                 echo "======== Iniciando Build ========"
-                sh "cd services"
-                sh "ls"
-                sh "cd Servicio-Usuario"
-                sh "npm install"
+                sh '''
+                    cd services
+                    cd Servicio-Usuario
+                    npm install
+                '''
             }
             post{
                 always{
@@ -22,9 +23,11 @@ pipeline{
         stage("Testing"){
             steps{
                 echo "======== Iniciando Tests ========"
-                sh "cd services"
-                sh "cd Servicio-Usuario"
-                sh "npm test"
+                sh '''
+                    cd services
+                    cd Servicio-Usuario
+                    npm test
+                '''
             }
             post{
                 always{
