@@ -8,6 +8,7 @@ pipeline{
                 echo "Ahora vamos a iniciar con el pipeline para servicio de usuario"
                 echo "======== Iniciando Build ========"
                 sh "cd services"
+                sh "ls"
                 sh "cd Servicio-Usuario"
                 sh "npm install"
             }
