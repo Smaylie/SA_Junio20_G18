@@ -49,7 +49,7 @@ pipeline{
                 sh '''
                     cd services
                     cd Servicio-Usuario
-                    docker login -u $DOCKER_CREDENTIALS -p $DOCKER_CREDENTIALS docker.io
+                    docker login -u $DOCKER_CREDENTIALS_USR -p $DOCKER_CREDENTIALS_PSW docker.io
                     docker build -t "crisalva25/sa_servicio-usuario:latest" .
                     docker push "crisalva25/sa_servicio-usuario:latest"
                 '''
