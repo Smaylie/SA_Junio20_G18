@@ -20,6 +20,9 @@ pipeline{
         }
 
         stage("Testing"){
+            options {
+                timeout(time: 10, unit: "SECONDS")
+            }
             steps{
                 echo "======== Iniciando Tests ========"
                 sh '''
@@ -32,14 +35,6 @@ pipeline{
                 always{
                     echo "======== Terminando Tests ========"   
                 }
-            }
-        }
-
-        stage ("Espera para usar credenciales") {
-            steps{
-                def time = 10
-                echo "Esperaremos 10 segundos para el release"
-                sleep time.toInteger() // seconds
             }
         }
 
