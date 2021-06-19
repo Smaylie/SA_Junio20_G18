@@ -46,7 +46,7 @@ pipeline{
                     cd client/book-sa
                     docker build -t "crisalva25/sa_front-end:latest" .
                     docker login -u $DOCKER_CREDENTIALS_USR -p $DOCKER_CREDENTIALS_PSW docker.io
-                    docker push "crisalva25/sa_servicio-usuario:latest"
+                    docker push "crisalva25/sa_front-end:latest"
                 '''
             }
             post{
