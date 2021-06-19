@@ -3,4 +3,4 @@ WORKDIR /src
 COPY . .
 RUN npm install
 EXPOSE 3010
-ENTRYPOINT ["npm", "run"]
+ENTRYPOINT ["node", "index.js"]
