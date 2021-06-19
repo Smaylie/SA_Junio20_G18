@@ -47,7 +47,6 @@ pipeline{
             steps{
                 echo "======== Iniciando Release ========"
                 app = docker.build(imagename)
-                }
             }
             post{
                 always{
