@@ -35,6 +35,12 @@ pipeline{
             }
         }
 
+        stage ("Espera para usar credenciales") {
+            def time = 10
+            echo "Esperaremos 10 segundos para el release"
+            sleep time.toInteger() // seconds
+        }
+
         stage("Release"){
             environment {
                 // The new variables will always be YOUR_VARIABLE_NAME + _USR and _PSW.
