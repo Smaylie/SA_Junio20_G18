@@ -7,6 +7,7 @@ pipeline{
 
     agent any
     tools {nodejs "node"}
+    def app
 
     stages{
         stage("Build"){
@@ -45,13 +46,8 @@ pipeline{
         stage("Release"){
             steps{
                 echo "======== Iniciando Release ========"
-                script {
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
-                    docker.withRegistry( '', registryCredential ) {
-                        dockerImage.push('latest')
-                    }
+                app = docker.build(imagename)
                 }
-                sh "docker rmi $registry:$BUILD_NUMBER" 
             }
             post{
                 always{
