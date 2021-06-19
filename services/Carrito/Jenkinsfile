@@ -49,7 +49,7 @@ pipeline{
                     cd services
                     cd Carrito
                     docker build -t "crisalva25/sa_servicio-carrito:latest" .
-                    docker login -u $DOCKER_CREDENTIALS_USR" -p "$DOCKER_CREDENTIALS_PSW docker.io
+                    docker login -u $DOCKER_CREDENTIALS_USR -p $DOCKER_CREDENTIALS_PSW docker.io
                     docker push "crisalva25/sa_servicio-carrito:latest"
                 '''
             }
