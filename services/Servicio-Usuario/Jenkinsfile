@@ -1,8 +1,8 @@
 pipeline{
     environment {
-        imagename = "crisalva25/sa_servicio-usuario"
-        registryCredential = 'dockerhub'
-        dockerImage = ''
+        def imagename = "crisalva25/sa_servicio-usuario"
+        def registryCredential = 'dockerhub'
+        def dockerImage = ''
         
     }
 
