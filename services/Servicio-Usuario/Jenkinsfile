@@ -1,7 +1,11 @@
 pipeline{
     agent any
     tools {nodejs "node"}
-
+    environment {
+    imagename = "crisalva25/sa_servicio-usuario"
+    registryCredential = 'dockerhub'
+    dockerImage = ''
+    }
     stages{
         stage("Build"){
             steps{
