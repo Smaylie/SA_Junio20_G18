@@ -1,0 +1,85 @@
+pipeline{
+    agent any
+    tools {nodejs "node"}
+    stages{
+        stage("Build"){
+            steps{
+                echo "Ahora vamos a iniciar con el pipeline para el front end"
+                echo "======== Iniciando Build ========"
+                sh '''
+                    cd client/book-sa
+                    npm install
+                '''
+            }
+            post{
+                always{
+                    echo "======== Terminando Build ========"
+                }
+            }
+        }
+
+        stage("Testing"){
+            options {
+                timeout(time: 15, unit: "SECONDS")
+            }
+            steps{
+                echo "======== Iniciando Tests ========"
+                sh '''
+                    cd client/book-sa
+                '''
+            }
+            post{
+                always{
+                    echo "No hay tests todavia"
+                    echo "======== Terminando Tests ========"   
+                }
+            }
+        }
+
+        stage("Release"){
+            environment {
+                // The new variables will always be YOUR_VARIABLE_NAME + _USR and _PSW.
+                DOCKER_CREDENTIALS = credentials('dockerhub')
+            }
+            steps{
+                sh '''
+                    cd client/book-sa
+                    docker build -t "crisalva25/sa_front-end:latest" .
+                    docker login -u $DOCKER_CREDENTIALS_USR -p $DOCKER_CREDENTIALS_PSW docker.io
+                    docker push "crisalva25/sa_servicio-usuario:latest"
+                '''
+            }
+            post{
+                always{
+                    echo "======== Terminando Release ========"
+                    sh "docker logout"
+                }
+            }
+        }
+
+        stage("Deploy"){
+            steps{
+                echo "======== Iniciando Deploy ========"
+                echo "Deployment en fabric se realiza en un paso diferente"
+            }
+            post{
+                always{
+                    echo "======== Terminando Deploy ========"   
+                }
+            }
+        }
+
+    }
+
+    post{
+        always{
+            echo "========always========"
+        }
+        success{
+            echo "========pipeline executed successfully ========"
+        }
+        failure{
+            echo "========pipeline execution failed========"
+        }
+    }
+}
