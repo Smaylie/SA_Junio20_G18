@@ -10,4 +10,4 @@ RUN npm run build --prod
 FROM nginx:alpine
 COPY --from=node /app/dist/book-sa /usr/share/nginx/html
 EXPOSE 4200
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["npm", "start"]
