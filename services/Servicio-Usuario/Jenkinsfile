@@ -1,11 +1,6 @@
 pipeline{
     agent any
     tools {nodejs "node"}
-    environment {
-    imagename = "crisalva25/sa_servicio-usuario"
-    registryCredential = 'dockerhub'
-    dockerImage = ''
-    }
     stages{
         stage("Build"){
             steps{
@@ -65,7 +60,7 @@ pipeline{
         stage("Deploy"){
             steps{
                 echo "======== Iniciando Deploy ========"
-                echo "aqui deberia hacer el deploy con fabric"
+                echo "Deployment en fabric se realiza en un paso diferente"
             }
             post{
                 always{
