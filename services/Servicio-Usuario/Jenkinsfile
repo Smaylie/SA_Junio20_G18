@@ -43,6 +43,7 @@ pipeline{
         stage("Release"){
             steps{
                 script {
+                    sh "ls"
                     dir("./services/Servicio-Usuario"){
                         dockerImage = docker.build registry + ":$BUILD_NUMBER" 
                     }
