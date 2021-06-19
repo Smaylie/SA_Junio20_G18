@@ -36,8 +36,8 @@ pipeline{
         }
 
         stage ("Espera para usar credenciales") {
+            def time = 5
             steps{
-                def time = 5
                 echo "Esperaremos 5 segundos para el release"
                 sleep time.toInteger() // seconds
             }
