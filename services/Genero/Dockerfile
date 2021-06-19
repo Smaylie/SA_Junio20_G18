@@ -2,5 +2,5 @@ FROM node:latest
 WORKDIR /src
 COPY . .
 RUN npm install
-EXPOSE 3000
+EXPOSE 3600
 ENTRYPOINT ["npm", "start"]

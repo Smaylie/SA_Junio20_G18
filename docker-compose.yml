@@ -1,1 +1,22 @@
 version: "3.7"
+services:
+    servicio-usuario:
+      image: crisalva25/sa_servicio-usuario:latest
+      ports:
+        - "3000:3000"
+
+    servicio-libro:
+        image: crisalva25/sa_servicio-libro:latest
+        ports:
+            - "3001:9000"
+
+    servicio-genero:
+        image: crisalva25/sa_servicio-genero:latest
+        ports:
+            - "3002:3600"
+
+    servicio-carrito:
+        image: crisalva25/sa_servicio-carrito:latest
+        ports:
+            - "3003:3010"
+
