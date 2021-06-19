@@ -52,11 +52,11 @@ pipeline{
                         dockerImage.push('latest')
                     }
                 }
+                sh "docker rmi $imagename:$BUILD_NUMBER"
+                sh "docker rmi $imagename:latest"
             }
             post{
                 always{
-                    sh "docker rmi $imagename:$BUILD_NUMBER"
-                    sh "docker rmi $imagename:latest"
                     echo "======== Terminando Release ========"
                 }
             }
