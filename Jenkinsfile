@@ -6,6 +6,11 @@ pipeline{
                 echo "Iniciando deploy de docker compose con un archivo de fabric"
                 sh "fab check"
             }
+            post{
+                always{
+                    echo "Saliendo del deployment"
+                }
+            }
         }
     }
 }

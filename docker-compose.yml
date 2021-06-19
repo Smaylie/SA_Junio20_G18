@@ -8,15 +8,15 @@ services:
     servicio-libro:
         image: crisalva25/sa_servicio-libro:latest
         ports:
-            - "0.0.0.0:3001:9000"
+            - "0.0.0.0:9000:9000"
 
     servicio-genero:
         image: crisalva25/sa_servicio-genero:latest
         ports:
-            - "0.0.0.0:3002:3600"
+            - "0.0.0.0:3600:3600"
 
     servicio-carrito:
         image: crisalva25/sa_servicio-carrito:latest
         ports:
-            - "0.0.0.0:3003:3010"
+            - "0.0.0.0:3010:3010"
 

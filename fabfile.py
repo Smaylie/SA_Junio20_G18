@@ -1,22 +1,24 @@
 from fabric.api import *
 
+#host
 env.hosts = '157.230.218.35'
-# Set the username
+
+# Credenciales
 env.user = "root"
 env.password = "sa2K21!r"
 
-def host_type():
-    run('uname -s')
+def remover_anterior():
+    #dtengo el servicio
+    sudo("docker-compose -p FASE_1 stop")
+
+    #lo elimino
+    sudo("docker-compose -p FASE_1 rm -f")
+
  
- 
-def diskspace():
-    run('df')
- 
- 
-def check():
- 
-    # check host type
-    host_type()
- 
-    # Check diskspace
-    diskspace()
+def deploy():
+    remover_anterior()
+    sudo("rm docker-compose.yml")
+    put("./docker-compose.yml","./",use_sudo=True)
+    sudo("docker-compose pull")
+    sudo("docker-compose -p FASE_1  up -d")
+    
