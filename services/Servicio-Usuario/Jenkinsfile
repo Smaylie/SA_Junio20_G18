@@ -1,4 +1,10 @@
 pipeline{
+    environment {
+        imagename = "crisalva25/sa_servicio-usuario"
+        registryCredential = 'dockerhub'
+        dockerImage = ''
+    }
+
     agent any
     tools {nodejs "node"}
 
@@ -39,10 +45,18 @@ pipeline{
         stage("Release"){
             steps{
                 echo "======== Iniciando Release ========"
-                echo "aqui deberia empaquetar"
+                script {
+                    dockerImage = docker.build imagename
+                    docker.withRegistry( '', registryCredential ) {
+                        dockerImage.push("$BUILD_NUMBER")
+                        dockerImage.push('latest')
+                    }
+                }
             }
             post{
                 always{
+                    sh "docker rmi $imagename:$BUILD_NUMBER"
+                    sh "docker rmi $imagename:latest"
                     echo "======== Terminando Release ========"
                 }
             }
