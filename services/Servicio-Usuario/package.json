@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "mocha ./tests/ --timeout 10000"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -13,6 +14,9 @@
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "mysql": "^2.18.1",
-    "pug": "2.0.0-beta11"
+    "pug": "2.0.0-beta11",
+    "chai": "^3.5.0",
+    "chai-http": "^2.0.1",
+    "mocha": "^2.4.5"
   }
 }

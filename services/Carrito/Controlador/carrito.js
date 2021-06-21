@@ -62,6 +62,19 @@ function actualizar(req, res) {
                     }
                 }
             );
+            if(input.idl) {
+                conn.query(
+                    "UPDATE Libro SET cantidad = cantidad - 1 WHERE idl = ?",
+                    [input.idl],
+                    (error, results) => {
+                        if (error) {
+                            console.log(error);
+                        } else {
+                            console.log('ok');
+                        }
+                    }
+                );
+            }
         } catch (error) {
             res.status(500).json({
                 Mensaje: "Error catch",

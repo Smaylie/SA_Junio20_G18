@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiciosService } from './servicios.service';
-
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -19,6 +19,10 @@ import { CbooksComponent } from './cbooks/cbooks.component';
 import { CompraComponent } from './compra/compra.component';
 import { CrudbooksComponent } from './crudbooks/crudbooks.component';
 import { EbooksComponent } from './ebooks/ebooks.component';
+import { SolicitudComponent } from './solicitud/solicitud.component';
+import { EsolicitudComponent } from './esolicitud/esolicitud.component';
+import { TbitacoraComponent } from './tbitacora/tbitacora.component';
+import { CalculadoraComponent } from './calculadora/calculadora.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +39,11 @@ import { EbooksComponent } from './ebooks/ebooks.component';
     CbooksComponent,
     CompraComponent,
     CrudbooksComponent,
-    EbooksComponent
+    EbooksComponent,
+    SolicitudComponent,
+    EsolicitudComponent,
+    TbitacoraComponent,
+    CalculadoraComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +51,7 @@ import { EbooksComponent } from './ebooks/ebooks.component';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+    NgMultiSelectDropDownModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

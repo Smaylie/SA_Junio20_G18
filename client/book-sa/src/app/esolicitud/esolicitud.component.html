@@ -1,0 +1,23 @@
+<table class="table table-striped caption-top">
+    <caption>LISTADO DE SOLICITUDES</caption>
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Autor</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Aceptar solicitud</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-template ngFor let-solicitud [ngForOf]="arrSolicitud" let-i="index" >
+        <tr *ngIf="solicitud.estado == 1"> 
+            <th scope="row">{{ (i + 1) }}</th>
+            <td>{{solicitud.nombre}}</td>
+            <td>{{solicitud.autor}}</td>
+            <td>{{solicitud.fecha}}</td>
+            <td><button class="btn btn-warning" (click)="aceptarSolicitud(solicitud)">Aceptar</button></td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>

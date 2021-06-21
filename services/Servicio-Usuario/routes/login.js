@@ -18,10 +18,12 @@ router.post('/cliente', function(req,res,next){
   conexion.select_from(query).then(function(resultado){
     //si no regreso nada la consulta
     if(resultado.length < 1){
-      res.send(JSON.stringify({succcess:false}));
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({succcess:false}));
     }
     //si la consulta regresa id entonces si existe la cuenta
-    res.send(JSON.stringify({
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({
       success:true,
       datos:{
         idc:resultado[0].idc,
@@ -34,7 +36,8 @@ router.post('/cliente', function(req,res,next){
       }
     }));
   }).catch(function(err){
-    res.send(JSON.stringify({succcess:false,mensaje:err}));
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({succcess:false,mensaje:err}));
   })
 });
 
@@ -54,10 +57,12 @@ router.post('/editorial', function(req,res,next){
   conexion.select_from(query).then(function(resultado){
     //si no regreso nada la consulta
     if(resultado.length < 1){
-      res.send(JSON.stringify({succcess:false}));
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({succcess:false}));
     }
     //si la consulta regresa id entonces si existe la cuenta
-    res.send(JSON.stringify({
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({
       success:true,
       datos:{
         ide:resultado[0].ide,
@@ -68,7 +73,8 @@ router.post('/editorial', function(req,res,next){
       }
     }));
   }).catch(function(err){
-    res.send(JSON.stringify({succcess:false,mensaje:err}));
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({succcess:false,mensaje:err}));
   })
 });
 

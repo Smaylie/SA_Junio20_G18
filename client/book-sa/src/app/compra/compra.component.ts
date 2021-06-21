@@ -37,6 +37,7 @@ export class CompraComponent implements OnInit {
   eliminarDeCarrito() {
     this.arrLibros.forEach(element => {
       this.idEliminar.idr = element.id_carrito;
+      this.idEliminar.idl = element.id_libro;
       this.servicio.deleteSCarrito(this.idEliminar)
       .subscribe((res)  => {
         console.log(res);
@@ -56,7 +57,8 @@ export class CompraComponent implements OnInit {
   }
   idEliminar: any = {
     etapa: 2,
-    idr: 0
+    idr: 0,
+    idl: 0,
   }
   compraEntrega: any = {
     nombre: '',

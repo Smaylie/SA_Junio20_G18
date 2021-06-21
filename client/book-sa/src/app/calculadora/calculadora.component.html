@@ -1,0 +1,46 @@
+<app-barrasup></app-barrasup>
+
+<div class="container">
+    <h1 class="text-center">Calculadora de impuestos</h1>
+    <hr><br><br>
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-6">
+            <div class="card text-center">
+                <div class="card-header">Ingresar datos</div>
+                <div class="card-body">
+                    <form>
+                        <div>
+                            <div class="mb-3">
+                                <select [(ngModel)]="selectedUsuario" name="tipoUsuarioSelect" id="tipoUsuarioSelect" class="form-select">
+                                  <option value="16">España</option>
+                                  <option value="15">Estados Unidos</option>
+                                  <option value="12">Mexico</option>
+                                  <option value="25">Brasil</option>
+                                  <option value="10">El Salvador</option>
+                                  <option value="13">Costa Rica</option>
+                                  <option value="14">Colombia</option>
+                                  <option value="20">Argentina</option>
+                                  <option value="25">Chile</option>
+                                  <option value="30">Inglaterra</option>
+                                </select>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input [(ngModel)]="precio" type="number" class="form-control" id="precioInput"
+                                    placeholder="Precio Libro" name="precioInput" />
+                                <label for="precioInput">Precio Libro</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input [(ngModel)]="total" type="number" class="form-control" id="totalInput"
+                                    placeholder="Total" name="totalInput" readonly/>
+                                <label for="totalInput">Total</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" (click)="calcular()">Calcular</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

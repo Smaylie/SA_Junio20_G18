@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiciosService } from '../servicios.service';
 import { Router } from '@angular/router';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-ebooks',
@@ -13,24 +14,33 @@ export class EbooksComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerUsuario();
-    
+    this.obtenerGeneros();
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'id_genero',
+      textField: 'nombre_genero',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+    this.bitacora.fecha = formatDate(new Date(), 'yyyy/MM/dd', 'en');
   }
 
   obtenerLibros() {
     this.servicio.getLibros()
       .subscribe((res) => {
-        console.log(res);
         this.arrLibros = res;
+        this.bitacora.accion = 'obtener libros',
+        this.crearBitacora(this.bitacora);
       });
   }
 
   obtenerUsuario() {
     this.usuario = this.servicio.getLog();
-    console.log(this.usuario);
-    console.log(this.idEditorial);
     this.idEditorial = this.usuario.ide;
     this.libro.editorial = this.usuario.ide;
-    console.log(this.libro);
+    this.bitacora.editorial = this.usuario.ide;
     this.obtenerLibros();
   }
 
@@ -52,6 +62,9 @@ export class EbooksComponent implements OnInit {
         alert('libro actualizado con exito! 📘✅');
         this.obtenerLibros();
       })
+
+      this.bitacora.accion = 'actualizar libro: ' + idlibro,
+      this.crearBitacora(this.bitacora);
   }
 
   eliminarLibro(idLibro) {
@@ -64,12 +77,16 @@ export class EbooksComponent implements OnInit {
         this.obtenerLibros();
         alert('libro eliminado con exito! 📘❌');
       })
+    
+    this.bitacora.accion = 'eliminar libro: ' + idLibro,
+    this.crearBitacora(this.bitacora);
   }
 
   crearLibro() {
     const strImg = this.libro.imagen;
     const foto = strImg.split("\\",4);
     this.libro.imagen = foto[2];
+    this.libro.generos = this.selectedItems;
     this.servicio.uploadImage(this.imagen.avatar)
       .subscribe(() => console.log('ok1'));
     this.servicio.postLibro(this.libro)
@@ -81,10 +98,39 @@ export class EbooksComponent implements OnInit {
         alert('libro creado con exito! 📙');
         this.obtenerLibros();
       })
+      this.bitacora.accion = 'crear libro: ' + this.libro.nombre,
+      this.crearBitacora(this.bitacora);
   }
 
   onFileChanged(event) {
     this.imagen.avatar = event.target.files[0]
+  }
+
+  obtenerGeneros() {
+    this.servicio.getGeneros()
+      .subscribe((res) => {
+        this.arrGeneros = res;
+        this.dropdownList = this.arrGeneros;
+      }, (err) => {
+        console.error(err);
+      });
+  }
+
+  onItemSelect(item: any) {
+    console.log(this.selectedItems);
+  }
+  
+  onSelectAll(items: any) {
+    console.log(items);
+  }
+
+  crearBitacora(nuevaBitacora) {
+    this.servicio.postBitacora(nuevaBitacora)
+      .subscribe((res) => {
+        console.log('bit ok');
+      }, (err) => {
+        console.error(err);
+      })
   }
 
   imagen: any = {};
@@ -96,6 +142,7 @@ export class EbooksComponent implements OnInit {
     estado: 1,
     imagen: '',
     editorial: 0,
+    generos: [],
   }
   idEditorial: number = 5;
   updateBook: any = {
@@ -104,8 +151,16 @@ export class EbooksComponent implements OnInit {
     precio: '',
     cantidad: 0
   }
-
+  arrGeneros: any = [];
   usuario: any;
   arrLibros: any = [];
-
+  dropdownList = [];
+  selectedItems = [];
+  dropdownSettings = {};
+  fecha: any; 
+  bitacora: any = {
+    editorial: 0,
+    accion: '',
+    fecha: '',
+  };
 }

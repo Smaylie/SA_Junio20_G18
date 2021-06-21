@@ -17,7 +17,6 @@ export class CrudbooksComponent implements OnInit {
 
   obtenerUsuario() {
     this.usuario = this.servicio.getLog();
-    console.log(this.usuario);
   }
 
   usuario: any;

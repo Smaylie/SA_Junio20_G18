@@ -1,0 +1,21 @@
+<table class="table table-striped caption-top">
+    <caption>Bitacora de Editoriales</caption>
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Editorial</th>
+        <th scope="col">Accion</th>
+        <th scope="col">Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-template ngFor let-bitacora [ngForOf]="arrBitacora" let-i="index" >
+        <tr>
+            <th scope="row">{{ (i + 1) }}</th>
+            <td>{{ bitacora.nombre_editorial }}</td>
+            <td>{{ bitacora.accion_editorial }}</td>
+            <td>{{ bitacora.fecha_registro }}</td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>

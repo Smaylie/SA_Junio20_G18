@@ -77,6 +77,17 @@
                         placeholder="Cantidad" name="cantidadInput" />
                     <label for="cantidadInput">Cantidad</label>
                 </div>
+                <div class="form-floating mb-3">
+                  <ng-multiselect-dropdown name="generosInput"
+                    [placeholder]="'Generos'"
+                    [settings]="dropdownSettings"
+                    [data]="dropdownList"
+                    [(ngModel)]="selectedItems"
+                    (onSelect)="onItemSelect($event)"
+                    (onSelectAll)="onSelectAll($event)"
+                  >
+                  </ng-multiselect-dropdown>
+                </div>
                 <div class="mb-3">
                     <label for="formFile" class="form-label">Imagen Libro</label>
                     <input [(ngModel)]="libro.imagen" class="form-control" type="file" name="formFile" id="formFile" (change)="onFileChanged($event)">
