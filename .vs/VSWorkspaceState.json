@@ -2,8 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\services",
-    "\\services\\Carrito"
+    "\\services\\CarritoyEditorial",
+    "\\services\\CarritoyEditorial\\Controlador",
+    "\\services\\SolicitudyBitacora",
+    "\\services\\SolicitudyBitacora\\Controlador",
+    "\\services\\SolicitudyBitacora\\Services"
   ],
-  "SelectedNode": "\\services\\Carrito\\test.js",
+  "SelectedNode": "\\services\\SolicitudyBitacora\\Controlador\\solicitud.js",
   "PreviewInSolutionExplorer": false
 }
