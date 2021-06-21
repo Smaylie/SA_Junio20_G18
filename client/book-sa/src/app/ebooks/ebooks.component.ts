@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiciosService } from '../servicios.service';
 import { Router } from '@angular/router';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-ebooks',
@@ -24,12 +24,15 @@ export class EbooksComponent implements OnInit {
       itemsShowLimit: 3,
       allowSearchFilter: true
     };
+    this.bitacora.fecha = formatDate(new Date(), 'yyyy/MM/dd', 'en');
   }
 
   obtenerLibros() {
     this.servicio.getLibros()
       .subscribe((res) => {
         this.arrLibros = res;
+        this.bitacora.accion = 'obtener libros',
+        this.crearBitacora(this.bitacora);
       });
   }
 
@@ -37,6 +40,7 @@ export class EbooksComponent implements OnInit {
     this.usuario = this.servicio.getLog();
     this.idEditorial = this.usuario.ide;
     this.libro.editorial = this.usuario.ide;
+    this.bitacora.editorial = this.usuario.ide;
     this.obtenerLibros();
   }
 
@@ -58,6 +62,9 @@ export class EbooksComponent implements OnInit {
         alert('libro actualizado con exito! 📘✅');
         this.obtenerLibros();
       })
+
+      this.bitacora.accion = 'actualizar libro: ' + idlibro,
+      this.crearBitacora(this.bitacora);
   }
 
   eliminarLibro(idLibro) {
@@ -70,6 +77,9 @@ export class EbooksComponent implements OnInit {
         this.obtenerLibros();
         alert('libro eliminado con exito! 📘❌');
       })
+    
+    this.bitacora.accion = 'eliminar libro: ' + idLibro,
+    this.crearBitacora(this.bitacora);
   }
 
   crearLibro() {
@@ -88,7 +98,8 @@ export class EbooksComponent implements OnInit {
         alert('libro creado con exito! 📙');
         this.obtenerLibros();
       })
-    console.log(this.libro);
+      this.bitacora.accion = 'crear libro: ' + this.libro.nombre,
+      this.crearBitacora(this.bitacora);
   }
 
   onFileChanged(event) {
@@ -111,6 +122,15 @@ export class EbooksComponent implements OnInit {
   
   onSelectAll(items: any) {
     console.log(items);
+  }
+
+  crearBitacora(nuevaBitacora) {
+    this.servicio.postBitacora(nuevaBitacora)
+      .subscribe((res) => {
+        console.log('bit ok');
+      }, (err) => {
+        console.error(err);
+      })
   }
 
   imagen: any = {};
@@ -137,5 +157,10 @@ export class EbooksComponent implements OnInit {
   dropdownList = [];
   selectedItems = [];
   dropdownSettings = {};
-
+  fecha: any; 
+  bitacora: any = {
+    editorial: 0,
+    accion: '',
+    fecha: '',
+  };
 }

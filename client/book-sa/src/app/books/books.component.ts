@@ -22,6 +22,13 @@ export class BooksComponent implements OnInit {
       .subscribe((res) => {
         console.log(res);
         this.arrLibros = res;
+        this.arrLibros.forEach(element => {
+          if(element.imagen.includes(9000)) {
+            this.arrLibrosImagen.push(element);
+          } else {
+            this.arrLibrosPdf.push(element);
+          }
+        });
       })
   }
 
@@ -42,6 +49,8 @@ export class BooksComponent implements OnInit {
   }
 
   arrLibros: any = [];
+  arrLibrosImagen: any = [];
+  arrLibrosPdf: any = [];
   usuario: any;
   nuevoCarrito: any = {
     cliente: 0,

@@ -130,9 +130,21 @@ export class ServiciosService {
     return this.http.post('http://localhost:3015/api/solicitud/crear', solicitud, httpOptions);
   }
 
+  updateSolicitud(idSolicitud: any) {
+    return this.http.put('http://localhost:3015/api/solicitud/aceptar', idSolicitud, httpOptions)
+  }
+
   uploadPdf(pdfSubida: File) {
     const formData = new FormData();
     formData.append('pdflibro', pdfSubida);
     return this.http.post('http://localhost:3015/pdflibro', formData);
+  }
+
+  postBitacora(bitacora: any) {
+    return this.http.post('http://localhost:3015/api/bitacora/insertar', bitacora, httpOptions);
+  }
+
+  getBitacora() {
+    return this.http.get('http://localhost:3015/api/bitacora/leerXadmin');
   }
 }
