@@ -1,5 +1,51 @@
 <nav class="navbar navbar-dark bg-dark">
-    <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1" style="font-size: 30px;">BookSA</span>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">BOOKS-SA</a>
+    <button *ngIf="verificar == true" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div *ngIf="verificar == true" class="collapse navbar-collapse" id="navbarNav">
+        <div *ngIf="usuario.es != 3; else elseBlock">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                  <p class="nav-link active" style="color: white;">{{ usuario.nombres }}</p>
+                </li>
+                <li class="nav-iterm">
+                  <p class="nav-link active" style="color: white;">{{ usuario.apellidos }}</p>
+                </li>
+                <li class="nav-iterm">
+                  <p class="nav-link active" style="color: white;">{{ usuario.correo }}</p>
+                </li>
+                <li class="nav-iterm">
+                  <p class="nav-link active" style="color: white;">{{ usuario.telefono }}</p>
+                </li>
+                <li *ngIf="usuario.es == 1;" class="nav-iterm">
+                  <a class="nav-link" href="/landing-page">Tienda</a>
+                </li>
+                <li *ngIf="usuario.es == 1;" class="nav-iterm">
+                  <a class="nav-link" href="/mi-carrito">Carrito</a>
+                </li>
+                <li class="nav-iterm">
+                  <a class="nav-link" href="/login">Salir</a>
+                </li>
+              </ul>
+        </div>
+        <ng-template #elseBlock>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                  <p class="nav-link active" style="color: white;">{{ usuario.nombre }}</p>
+                </li>
+                <li class="nav-iterm">
+                  <p class="nav-link active" style="color: white;">{{ usuario.correo }}</p>
+                </li>
+                <li class="nav-iterm">
+                  <p class="nav-link active" style="color: white;">{{ usuario.direccion }}</p>
+                </li>
+                <li class="nav-iterm">
+                  <a class="nav-link" href="/login">Salir</a>
+                </li>
+              </ul>
+        </ng-template>
     </div>
+  </div>
 </nav>

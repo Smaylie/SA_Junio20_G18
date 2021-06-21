@@ -1,22 +1,15 @@
-pipeline {
-    agent any 
-    stages {
-        stage('Build') { 
-            steps {
-                // 
-                echo 'Build'
+pipeline{
+    agent any
+    stages{
+        stage("Deploy"){
+            steps{
+                echo "Iniciando deploy de docker compose con un archivo de fabric"
+                sh "fab deploy"
             }
-        }
-        stage('Test') { 
-            steps {
-                // 
-                echo 'Testing'
-            }
-        }
-        stage('Deploy') { 
-            steps {
-                // 
-                echo 'Deploying 3... 2... 1...'
+            post{
+                always{
+                    echo "Saliendo del deployment"
+                }
             }
         }
     }
