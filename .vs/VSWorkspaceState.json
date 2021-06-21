@@ -3,9 +3,11 @@
     "",
     "\\services",
     "\\services\\CarritoyEditorial",
-    "\\services\\CarritoyEditorial\\Services",
-    "\\services\\SolicitudyBitacora"
+    "\\services\\CarritoyEditorial\\Controlador",
+    "\\services\\SolicitudyBitacora",
+    "\\services\\SolicitudyBitacora\\Controlador",
+    "\\services\\SolicitudyBitacora\\Services"
   ],
-  "SelectedNode": "\\services\\SolicitudyBitacora\\index.js",
+  "SelectedNode": "\\services\\SolicitudyBitacora\\Controlador\\solicitud.js",
   "PreviewInSolutionExplorer": false
 }
