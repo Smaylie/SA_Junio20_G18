@@ -4,10 +4,11 @@
     "\\services",
     "\\services\\CarritoyEditorial",
     "\\services\\CarritoyEditorial\\Controlador",
+    "\\services\\CarritoyEditorial\\Services",
     "\\services\\SolicitudyBitacora",
     "\\services\\SolicitudyBitacora\\Controlador",
     "\\services\\SolicitudyBitacora\\Services"
   ],
-  "SelectedNode": "\\services\\SolicitudyBitacora\\Controlador\\solicitud.js",
+  "SelectedNode": "\\services\\CarritoyEditorial\\Services\\router.js",
   "PreviewInSolutionExplorer": false
 }
