@@ -14,8 +14,8 @@ function crear(req, res) {
     if (input.nombre != "") {
         try {
             conn.query(
-                "INSERT INTO Libro (nombre, autor, precio, cantidad, estado, editorial) VALUES (?,?,?,?,2,?)",
-                [input.nombre, input.autor, input.precio, input.cantidad, input.ide],
+                "INSERT INTO Libro (nombre, autor, precio, cantidad, estado, editorial) VALUES (?,?,?,?,2,0)",
+                [input.nombre, input.autor, input.precio, input.cantidad],
                 (error) => {
                     if (error) {
                         res.status(500).json({
