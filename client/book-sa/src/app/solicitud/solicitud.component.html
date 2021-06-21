@@ -1,0 +1,38 @@
+<app-barrasup></app-barrasup>
+
+<div class="container">
+    <h1 class="text-center">Solicitud de Libros</h1>
+    <hr><br><br>
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-6">
+            <div class="card text-center">
+                <div class="card-header">Ingresa tu Solicitud</div>
+                <div class="card-body">
+                    <form>
+                        <div>
+                            <div class="form-floating mb-3">
+                                <input [(ngModel)]="libro.nombre" type="text" class="form-control" id="nombreInput"
+                                    placeholder="Nombre" name="nombreInput" />
+                                <label for="nombreInput">Nombre</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input [(ngModel)]="libro.autor" type="text" class="form-control" id="autorInput"
+                                    placeholder="Autor" name="autorInput" />
+                                <label for="autorInput">Autor</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="date" class="form-control" id="fechaInput"
+                                    placeholder="precio" name="fechaInput" />
+                                <label for="precioInput">Fecha de Publicación</label>
+                            </div>
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label">PDF</label>
+                                <input [(ngModel)]="libro.imagen" class="form-control" type="file" name="formFile" id="formFile" (change)="onFileChanged($event)">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

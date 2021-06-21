@@ -19,6 +19,7 @@ import { CbooksComponent } from './cbooks/cbooks.component';
 import { CompraComponent } from './compra/compra.component';
 import { CrudbooksComponent } from './crudbooks/crudbooks.component';
 import { EbooksComponent } from './ebooks/ebooks.component';
+import { SolicitudComponent } from './solicitud/solicitud.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { EbooksComponent } from './ebooks/ebooks.component';
     CbooksComponent,
     CompraComponent,
     CrudbooksComponent,
-    EbooksComponent
+    EbooksComponent,
+    SolicitudComponent
   ],
   imports: [
     BrowserModule,

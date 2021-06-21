@@ -121,4 +121,14 @@ export class ServiciosService {
   getGeneros() {
     return this.http.get('http://localhost:3600/api/genero');
   }
+
+  postSolicitud(solicitud: any) {
+    return this.http.post('http://localhost:3015/api/solicitud/crear', solicitud, httpOptions);
+  }
+
+  uploadPdf(pdfSubida: File) {
+    const formData = new FormData();
+    formData.append('pdflibro', pdfSubida);
+    return this.http.post('http://localhost:3015/pdflibro', formData);
+  }
 }
