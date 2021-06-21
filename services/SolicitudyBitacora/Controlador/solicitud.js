@@ -81,7 +81,7 @@ function leer(req, res) {
 
     try {
         conn.query(
-            "SELECT nombre AS nombre_libro, autor AS autor_libro FROM Solicitud WHERE estado = 1",
+            "SELECT * FROM Solicitud WHERE estado = 1",
             (error, results) => {
                 if (error) {
                     res.status(500).json({
