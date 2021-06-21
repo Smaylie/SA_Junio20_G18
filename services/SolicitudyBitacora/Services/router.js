@@ -8,8 +8,8 @@ router.route('/bitacora/insertar').post(bitacora.insertar)
 router.route('/bitacora/leerXeditorial').get(bitacora.leerXeditorial)
 router.route('/bitacora/leerXadmin').get(bitacora.leerXadmin)
 
-router.route('/solicitud/insertar').post(solicitud.insertar)
-router.route('/solicitud/eliminar').delete(solicitud.eliminar)
+router.route('/solicitud/crear').post(solicitud.crear)
+router.route('/solicitud/aceptar').put(solicitud.aceptar)
 router.route('/solicitud/leer').get(solicitud.leer)
 
 module.exports = router

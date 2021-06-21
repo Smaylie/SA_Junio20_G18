@@ -8,14 +8,14 @@ var conn = mysql.createConnection({
     database: dbConfig.hrPool.database
 });
 
-function insertar(req, res) {
+function crear(req, res) {
     let input = req.body;
 
     if (input.nombre != "") {
         try {
             conn.query(
-                "INSERT INTO Solicitud (nombre, autor, fecha, estado, pdf) VALUES (?,?,?,?,?)",
-                [input.nombre, input.autor, input.fecha, input.estado, input.pdf],
+                "INSERT INTO Libro (nombre, autor, precio, cantidad, estado, editorial) VALUES (?,?,?,?,2,?)",
+                [input.nombre, input.autor, input.precio, input.cantidad, input.ide],
                 (error) => {
                     if (error) {
                         res.status(500).json({
@@ -40,16 +40,16 @@ function insertar(req, res) {
     }
 }
 
-module.exports.insertar = insertar;
+module.exports.crear = crear;
 
-function eliminar(req, res) {
+function aceptar(req, res) {
     let input = req.body;
 
-    if (input.ids != "") {
+    if (input.idl != "") {
         try {
             conn.query(
-                "UPDATE Solicitud SET estado = 0 WHERE ids = ?",
-                [input.ids],
+                "UPDATE Libro SET estado = 1 WHERE idl = ?",
+                [input.idl],
                 (error) => {
                     if (error) {
                         res.status(500).json({
@@ -74,13 +74,13 @@ function eliminar(req, res) {
     }
 }
 
-module.exports.eliminar = eliminar;
+module.exports.aceptar = aceptar;
 
 function leer(req, res) {
 
     try {
         conn.query(
-            "SELECT nombre AS nombre_libro, autor AS autor_libro, fecha AS primera_publicacion, pdf AS pdf_libro FROM Solicitud WHERE estado > 0",
+            "SELECT nombre AS nombre_libro, autor AS autor_libro FROM Libro WHERE estado = 2",
             (error, results) => {
                 if (error) {
                     res.status(500).json({
