@@ -10,12 +10,13 @@ var conn = mysql.createConnection({
 
 function crear(req, res) {
     let input = req.body;
+    let imagen = 'http://localhost:9000/uploads/'+input.imagen;
 
     if (input.nombre != "") {
         try {
             conn.query(
-                "INSERT INTO Libro (nombre, autor, precio, cantidad, estado, imagen, editorial) VALUES (?,?,0,0,2,?,0)",
-                [input.nombre, input.autor, input.imagen],
+                "INSERT INTO Solicitud (nombre, autor, precio, cantidad, estado, fecha, imagen) VALUES (?,?,0,0,2,?,?)",
+                [input.nombre, input.autor, input.fecha, imagen],
                 (error) => {
                     if (error) {
                         res.status(500).json({
