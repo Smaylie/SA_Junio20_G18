@@ -20,6 +20,7 @@ import { CompraComponent } from './compra/compra.component';
 import { CrudbooksComponent } from './crudbooks/crudbooks.component';
 import { EbooksComponent } from './ebooks/ebooks.component';
 import { SolicitudComponent } from './solicitud/solicitud.component';
+import { EsolicitudComponent } from './esolicitud/esolicitud.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
     CompraComponent,
     CrudbooksComponent,
     EbooksComponent,
-    SolicitudComponent
+    SolicitudComponent,
+    EsolicitudComponent
   ],
   imports: [
     BrowserModule,

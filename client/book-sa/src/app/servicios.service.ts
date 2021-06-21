@@ -122,6 +122,10 @@ export class ServiciosService {
     return this.http.get('http://localhost:3600/api/genero');
   }
 
+  getSolicitud() {
+    return this.http.get('http://localhost:3015/api/solicitud/leer');
+  }
+
   postSolicitud(solicitud: any) {
     return this.http.post('http://localhost:3015/api/solicitud/crear', solicitud, httpOptions);
   }

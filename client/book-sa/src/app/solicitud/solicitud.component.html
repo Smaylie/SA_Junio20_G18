@@ -21,8 +21,8 @@
                                 <label for="autorInput">Autor</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="date" class="form-control" id="fechaInput"
-                                    placeholder="precio" name="fechaInput" />
+                                <input [(ngModel)]="libro.fecha" type="date" class="form-control" id="fechaInput"
+                                    placeholder="Fecha de Publicación" name="fechaInput" />
                                 <label for="precioInput">Fecha de Publicación</label>
                             </div>
                             <div class="mb-3">
