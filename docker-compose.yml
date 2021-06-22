@@ -20,4 +20,9 @@ services:
         ports:
             - "0.0.0.0:3010:3010"
 
+    servicio-bitacora:
+        image: crisalva25/sa_solicitudybitacora:latest
+        ports:
+            - "0.0.0.0:3015:3015"
+
 
