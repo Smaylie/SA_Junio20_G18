@@ -98,4 +98,6 @@ routes.get('/genero/:id',(req,res)=>{
         })
     })
 })
+
+
 module.exports = routes
