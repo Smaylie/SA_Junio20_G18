@@ -2,6 +2,7 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { ServiciosService } from '../servicios.service';
 import { Router } from '@angular/router';
 import { EbooksComponent } from '../ebooks/ebooks.component';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-esolicitud',
@@ -15,11 +16,13 @@ export class EsolicitudComponent implements OnInit {
   ngOnInit(): void {
     this.getSolicitudes();
     this.obtenerUsuario();
+    this.bitacora.fecha = formatDate(new Date(), 'yyyy/MM/dd', 'en');
   }
 
   obtenerUsuario() {
     this.usuario = this.servicio.getLog();
     this.libro.editorial = this.usuario.ide;
+    this.bitacora = this.usuario.ide;
   }
 
   getSolicitudes() {
@@ -36,6 +39,7 @@ export class EsolicitudComponent implements OnInit {
 
     this.servicio.postLibro(this.libro)
       .subscribe((res) => {
+        this.crearBitacora();
         alert('libro aceptado con exito! 📙');
         this.router.navigateByUrl('/administrar-tienda', { skipLocationChange: true });
         this.servicio.updateSolicitud({ids: solicitud.ids})
@@ -46,6 +50,16 @@ export class EsolicitudComponent implements OnInit {
         this.router.navigateByUrl('/administrar-tienda', { skipLocationChange: true });
         this.servicio.updateSolicitud({ids: solicitud.ids})
           .subscribe((res) => console.log('ok'));
+      })
+  }
+
+  crearBitacora() {
+    this.bitacora.accion = "Se acepto una solicitud";
+    this.servicio.postBitacora(this.bitacora)
+      .subscribe((res) => {
+        console.log('bit ok');
+      }, (err) => {
+        console.error(err);
       })
   }
 
@@ -61,6 +75,11 @@ export class EsolicitudComponent implements OnInit {
     generos: [],
   }
   usuario: any;
+  bitacora: any = {
+    editorial: 0,
+    accion: '',
+    fecha: '',
+  };
   /*
   autor: "Darren Shan"
   cantidad: 0
