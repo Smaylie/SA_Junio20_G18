@@ -9,6 +9,7 @@ import { CompraComponent } from './compra/compra.component';
 import { CrudbooksComponent } from './crudbooks/crudbooks.component';
 import { SolicitudComponent } from './solicitud/solicitud.component';
 import { CalculadoraComponent } from './calculadora/calculadora.component';
+import { OrdenesComponent } from './ordenes/ordenes.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'realizar-compra', component: CompraComponent },
   { path: 'administrar-tienda', component: CrudbooksComponent },
   { path: 'solicitar-libro', component: SolicitudComponent },
-  { path: 'calculo-impuestos', component: CalculadoraComponent }
+  { path: 'calculo-impuestos', component: CalculadoraComponent },
+  { path: 'ordenes', component: OrdenesComponent }
 ];
 
 @NgModule({

@@ -1,7 +1,6 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { ServiciosService } from '../servicios.service';
 import { Router } from '@angular/router';
-import { EbooksComponent } from '../ebooks/ebooks.component';
 import {formatDate} from '@angular/common';
 
 @Component({

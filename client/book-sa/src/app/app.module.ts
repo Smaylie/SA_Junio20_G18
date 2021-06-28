@@ -23,6 +23,7 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
 import { EsolicitudComponent } from './esolicitud/esolicitud.component';
 import { TbitacoraComponent } from './tbitacora/tbitacora.component';
 import { CalculadoraComponent } from './calculadora/calculadora.component';
+import { OrdenesComponent } from './ordenes/ordenes.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { CalculadoraComponent } from './calculadora/calculadora.component';
     SolicitudComponent,
     EsolicitudComponent,
     TbitacoraComponent,
-    CalculadoraComponent
+    CalculadoraComponent,
+    OrdenesComponent
   ],
   imports: [
     BrowserModule,

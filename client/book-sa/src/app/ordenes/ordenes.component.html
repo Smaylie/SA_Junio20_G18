@@ -1,0 +1,60 @@
+<app-barrasup></app-barrasup>
+<br />
+<div class="container">
+  <h1 class="text-center">Gestión de pedidos</h1>
+  <hr />
+  <br /><br />
+  <div class="row">
+      Etapas
+      <div class="col">
+        <span class="badge rounded-pill bg-danger">0 Cancelada</span>
+        <span class="badge rounded-pill bg-primary">1 Recibida</span>
+        <span class="badge rounded-pill bg-secondary">2 Despacho</span>
+        <span class="badge rounded-pill bg-warning">3 Entrega</span>
+        <span class="badge rounded-pill bg-success">4 Finalizada</span>
+      </div>
+  </div>
+  <table class="table table-striped caption-top">
+    <caption>
+      LISTADO DE ORDENES
+    </caption>
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Correo</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Etapa</th>
+        <th scope="col">Sig. Etapa</th>
+        <th scope="col">Cancelar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-template ngFor let-orden [ngForOf]="arrOrdenes" let-i="index">
+        <tr *ngIf="orden.status == 1">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ orden.nombres }}</td>
+          <td>{{ orden.correo }}</td>
+          <td>{{ orden.fecha }}</td>
+          <td>{{ orden.etapa }}</td>
+          <td>
+            <button *ngIf="orden.etapa != 4 && orden.etapa != 0"
+              class="btn btn-secondary"
+              (click)="aceptarOrden(orden.id_compra, orden.etapa)"
+            >
+              Cambiar
+            </button>
+          </td>
+          <td>
+            <button *ngIf="orden.etapa != 4 && orden.etapa != 0"
+              class="btn btn-danger"
+              (click)="cancelarOrden(orden.id_compra, orden.etapa)"
+            >
+              Cancelar
+            </button>
+          </td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+</div>

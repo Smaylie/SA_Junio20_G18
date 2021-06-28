@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiciosService } from '../servicios.service';
 import { Router } from '@angular/router';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-compra',
@@ -13,7 +14,7 @@ export class CompraComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerUsuario();
-    
+    this.fecha = formatDate(new Date(), 'yyyy/MM/dd', 'en');
   }
 
   obtenerUsuario() {
@@ -35,6 +36,14 @@ export class CompraComponent implements OnInit {
   }
 
   eliminarDeCarrito() {
+    let compra = {
+      id_usuario: this.usuario.idc,
+      fecha: this.fecha
+    }
+
+    this.servicio.postOrdenes(compra)
+      .subscribe((res) => console.log('ok'));
+
     this.arrLibros.forEach(element => {
       this.idEliminar.idr = element.id_carrito;
       this.idEliminar.idl = element.id_libro;
@@ -45,7 +54,8 @@ export class CompraComponent implements OnInit {
         console.error(err);
       });
     });
-    alert('compra realizada con exito! 🤑💸')
+    alert('compra realizada con exito! 🤑💸');
+    this.router.navigateByUrl('/landing-page');
   }
 
   carro: any;
@@ -71,7 +81,7 @@ export class CompraComponent implements OnInit {
     direccion: ''
   }
   selectedPago: any = 1;
-
+  fecha: any = '';
   cliente: any = {
     nombres: "Ricardo Antonio",
     apellidos: "Alvarado Ramirez",
