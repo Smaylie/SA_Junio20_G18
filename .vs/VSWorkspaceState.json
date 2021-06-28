@@ -1,14 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\client",
+    "\\client\\book-sa",
+    "\\client\\book-sa\\src",
+    "\\client\\book-sa\\src\\app",
+    "\\client\\book-sa\\src\\app\\login",
+    "\\client\\book-sa\\src\\app\\register",
     "\\services",
-    "\\services\\CarritoyEditorial",
-    "\\services\\CarritoyEditorial\\Controlador",
-    "\\services\\CarritoyEditorial\\Services",
-    "\\services\\SolicitudyBitacora",
-    "\\services\\SolicitudyBitacora\\Controlador",
-    "\\services\\SolicitudyBitacora\\Services"
+    "\\services\\Esb",
+    "\\services\\Servicio-Libro"
   ],
-  "SelectedNode": "\\services\\CarritoyEditorial\\Services\\router.js",
+  "SelectedNode": "\\services\\Esb\\App.py",
   "PreviewInSolutionExplorer": false
 }
