@@ -103,7 +103,7 @@ export class ServiciosService {
   uploadImage(imagenSubida: File) {
     const formData = new FormData();
     formData.append('libroImage', imagenSubida);
-    return this.http.post('http://localhost:9000/imagenlibro', formData);
+    return this.http.post('http:/localhost:9000/imagenlibro', formData);
   }
 
   postCarrito(objCarrito) {
@@ -146,5 +146,17 @@ export class ServiciosService {
 
   getBitacora() {
     return this.http.get('http://localhost:3015/api/bitacora/leerXadmin');
+  }
+
+  getOrdenes() {
+    return this.http.get('http://localhost:3600/api/ordenes');
+  }
+
+  putOrdenes(id, orden) {
+    return this.http.put('http://localhost:3600/api/ordenes/' + id, orden, httpOptions);
+  }
+
+  postOrdenes(orden) {
+    return this.http.post('http://localhost:3600/api/ordenes', orden, httpOptions);
   }
 }

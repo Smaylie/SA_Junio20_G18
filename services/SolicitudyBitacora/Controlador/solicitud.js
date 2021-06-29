@@ -10,7 +10,7 @@ var conn = mysql.createConnection({
 
 function crear(req, res) {
     let input = req.body;
-    let imagen = 'http://localhost:3015/uploads/'+input.imagen;
+    let imagen = input.imagen;
 
     if (input.nombre != "") {
         try {
