@@ -23,7 +23,7 @@ pipeline{
             steps{
                 sh '''
                     cd services
-                    cd ESB
+                    cd Esb
                     docker build -t "crisalva25/servicio-esb:latest" .
                     docker login -u $DOCKER_CREDENTIALS_USR -p $DOCKER_CREDENTIALS_PSW docker.io
                     docker push "crisalva25/servicio-esb:latest"
