@@ -19,5 +19,5 @@ def deploy():
     sudo("rm docker-compose.yml")
     put("./docker-compose.yml","./",use_sudo=True)
     sudo("docker-compose pull")
-    sudo("docker-compose -p FASE_1  up -d --restart always")
+    sudo("docker-compose -p FASE_1  up -d")
     
