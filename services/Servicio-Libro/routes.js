@@ -24,7 +24,7 @@ routes.post('/',(req,res)=>{
       }
     let generos = req.body.generos;
     console.log(generos);
-    nuevoLibro.imagen = 'http://localhost:9000/uploads/' + nuevoLibro.imagen;
+    nuevoLibro.imagen = nuevoLibro.imagen;
     req.getConnection((err,conn)=>{
         if(err) return res.send(err)
         
