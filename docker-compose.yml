@@ -25,6 +25,9 @@ services:
         ports:
             - "0.0.0.0:3015:3015"
 
-    
+    servicio-esb:
+        image: crisalva25/sa_servicio-esb:latest
+        ports:
+            - "0.0.0.0:3500:3500"
 
 
