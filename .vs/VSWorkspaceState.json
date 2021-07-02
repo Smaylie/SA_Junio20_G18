@@ -1,16 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\client",
     "\\client\\book-sa",
-    "\\client\\book-sa\\src",
-    "\\client\\book-sa\\src\\app",
-    "\\client\\book-sa\\src\\app\\login",
-    "\\client\\book-sa\\src\\app\\register",
     "\\services",
     "\\services\\Esb",
-    "\\services\\Servicio-Libro"
+    "\\services\\Genero"
   ],
-  "SelectedNode": "\\services\\Esb\\App.py",
+  "SelectedNode": "\\services\\Genero\\index.js",
   "PreviewInSolutionExplorer": false
 }

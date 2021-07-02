@@ -52,7 +52,12 @@ class EsbObtenerLibrosdeEditorial(Resource):
 
 class EsbComprar(Resource):
     def post(self):
-        return "Hola Mundo"
+        direccion = 'http://localhost:3600/api/ordenes/'
+        body = request.get_json()
+        data = json.dumps({'id_usuario': body['id_usuario'] , 'fecha':body['fecha'] })
+        headers = {'content-type': 'application/json'}
+        info = requests.post(direccion, data = data, headers = headers)
+        return info.json()
 
 """
 Direcciones
@@ -69,6 +74,6 @@ Levantando el servidor
 """
 
 if __name__ == '__main__':
-    HOST = 'localhost'
+    HOST = '0.0.0.0'
     PORT = 3500
     app.run(debug=True, host=HOST, port=PORT)
