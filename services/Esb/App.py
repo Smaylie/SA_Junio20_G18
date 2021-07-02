@@ -19,7 +19,7 @@ Redirecciones
 
 class EsbLogin(Resource):
     def post(self):
-        direccion = 'http://localhost:3000/api/login/cliente'
+        direccion = 'http://157.230.218.35:3000/api/login/cliente'
         body = request.get_json()
         data = json.dumps({'usuario': body['usuario'] , 'contra':body['contra']})
         headers = {'content-type': 'application/json'}
@@ -28,7 +28,7 @@ class EsbLogin(Resource):
 
 class EsbRegistrarCliente(Resource):
     def post(self):
-        direccion = 'http://localhost:3000/api/signup'
+        direccion = 'http://157.230.218.35:3000/api/signup'
         body = request.get_json()
         data = json.dumps({'nombre': body['nombre'] , 'apellidos':body['apellidos'], 'correo': body['correo'] , 'password': body['password'] , 'telefono': body['telefono'], 'estado': body['estado'], 'tipo': body['tipo'] })
         headers = {'content-type': 'application/json'}
@@ -37,7 +37,7 @@ class EsbRegistrarCliente(Resource):
 
 class EsbCrearLibroenEditorial(Resource):
     def post(self):
-        direccion = 'http://localhost:9000/api/'
+        direccion = 'http://157.230.218.35:9000/api/'
         body = request.get_json()
         data = json.dumps({'nombre': body['nombre'] , 'autor':body['autor'], 'precio': body['precio'] , 'cantidad': body['cantidad'] , 'estado': body['estado'], 'imagen': body['imagen'], 'editorial': body['editorial'], 'generos': body['generos'] })
         headers = {'content-type': 'application/json'}
@@ -46,13 +46,13 @@ class EsbCrearLibroenEditorial(Resource):
 
 class EsbObtenerLibrosdeEditorial(Resource):
     def get(self):
-        direccion = 'http://localhost:9000/api/'
+        direccion = 'http://157.230.218.35:9000/api/'
         info = requests.get(direccion)
         return info.json()
 
 class EsbComprar(Resource):
     def post(self):
-        direccion = 'http://localhost:3600/api/ordenes/'
+        direccion = 'http://157.230.218.35:3600/api/ordenes/'
         body = request.get_json()
         data = json.dumps({'id_usuario': body['id_usuario'] , 'fecha':body['fecha'] })
         headers = {'content-type': 'application/json'}

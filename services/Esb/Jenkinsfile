@@ -1,0 +1,53 @@
+pipeline{
+    agent any
+    stages{
+        stage("Testing"){
+            options {
+                timeout(time: 20, unit: "SECONDS")
+            }
+            steps{
+                echo "======== Iniciando Tests ========"
+            }
+            post{
+                always{
+                    echo "======== Terminando Tests ========"   
+                }
+            }
+        }
+
+        stage("Release"){
+            environment {
+                // The new variables will always be YOUR_VARIABLE_NAME + _USR and _PSW.
+                DOCKER_CREDENTIALS = credentials('dockerhub')
+            }
+            steps{
+                sh '''
+                    cd services
+                    cd ESB
+                    docker build -t "crisalva25/servicio-esb:latest" .
+                    docker login -u $DOCKER_CREDENTIALS_USR -p $DOCKER_CREDENTIALS_PSW docker.io
+                    docker push "crisalva25/servicio-esb:latest"
+                '''
+            }
+            post{
+                always{
+                    echo "======== Terminando Release ========"
+                    sh "docker logout"
+                }
+            }
+        }
+
+    }
+
+    post{
+        always{
+            echo "========always========"
+        }
+        success{
+            echo "========pipeline executed successfully ========"
+        }
+        failure{
+            echo "========pipeline execution failed========"
+        }
+    }
+}
