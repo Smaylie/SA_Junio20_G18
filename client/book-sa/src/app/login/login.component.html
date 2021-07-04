@@ -10,6 +10,13 @@
                     <p class="card-text">Ingresa tus credenciales para acceder!</p>
                     <form>
                         <div class="mb-3">
+                            <select [(ngModel)]="selectedGroup" name="grupoSelect" id="grupoSelect" class="form-select">
+                                <option value="17">G17</option>
+                                <option value="18">G18</option>
+                                <option value="19">G19</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
                             <select [(ngModel)]="selectedLogin" name="tipoUsuarioSelect" id="tipoUsuarioSelect" class="form-select">
                                 <option value="1">Cliente</option>
                                 <option value="2">Editorial</option>

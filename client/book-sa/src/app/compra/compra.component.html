@@ -11,6 +11,12 @@
                     <h3 class="card-title">Metodo de pago</h3>
                     <form>
                         <div class="mb-3">
+                            <select [(ngModel)]="selectedGrupo" name="grupoSelect" id="grupoSelect" class="form-select">
+                              <option value="18">G18</option>
+                              <option value="17">G17</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
                             <select [(ngModel)]="selectedPago" name="tipoPagoSelect" id="tipoPagoSelect" class="form-select">
                               <option value="1">Contra entrega</option>
                               <option value="2">TC</option>

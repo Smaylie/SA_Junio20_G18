@@ -1,42 +1,216 @@
 <div class="row justify-content-center">
   <div class="col-12 col-md-3">
     <div class="d-grid gap-2">
-      <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Nuevo</button>
+      <button
+        class="btn btn-primary"
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
+        Nuevo
+      </button>
     </div>
   </div>
 </div>
 <br />
 
-<table class="table table-striped caption-top">
-    <caption>LISTADO DE LIBROS</caption>
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">nombre</th>
-        <th scope="col">Autor</th>
-        <th scope="col">Precio</th>
-        <th scope="col">Cantidad</th>
-        <th scope="col">Actualizar</th>
-        <th scope="col">Eliminar</th>
-      </tr>
-    </thead>
-    <tbody>
-      <ng-template ngFor let-libro [ngForOf]="arrLibros" let-i="index" >
-        <tr *ngIf="libro.estado == 1 && libro.editorial == idEditorial;"> 
-            <th scope="row">{{ (i + 1) }}</th>
-            <td><input type="text" name="nombre{{libro.idl}}Input" id="nombre{{libro.idl}}Input" value="{{libro.nombre}}"></td>
-            <td><input type="text" name="autor{{libro.idl}}Input" id="autor{{libro.idl}}Input" value="{{libro.autor}}"></td>
-            <td><input type="number" name="precio{{libro.idl}}Input" id="precio{{libro.idl}}Input" value="{{libro.precio}}"></td>
-            <td><input type="number" name="cantidad{{libro.idl}}Input" id="cantidad{{libro.idl}}Input" value="{{libro.cantidad}}"></td>
-            <td><button class="btn btn-warning" (click)="actualizarLibro('nombre' + libro.idl + 'Input', 'autor' + libro.idl + 'Input', 'precio' + libro.idl + 'Input', 'cantidad' + libro.idl + 'Input', libro.idl)">actualizar</button></td>
-            <td><button class="btn btn-danger" (click)="eliminarLibro(libro.idl)">eliminar</button></td>
-        </tr>
-      </ng-template>
-    </tbody>
-  </table>
+<ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link active"
+      id="home-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#home"
+      type="button"
+      role="tab"
+      aria-controls="home"
+      aria-selected="true"
+    >
+      Grupo 18
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link"
+      id="profile-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#profile"
+      type="button"
+      role="tab"
+      aria-controls="profile"
+      aria-selected="false"
+    >
+      Grupo 17
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link"
+      id="contact-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#contact"
+      type="button"
+      role="tab"
+      aria-controls="contact"
+      aria-selected="false"
+    >
+      Grupo 19
+    </button>
+  </li>
+</ul>
 
-  <!-- Modal -->
+<div class="tab-content" id="myTabContent">
   <div
+    class="tab-pane fade show active"
+    id="home"
+    role="tabpanel"
+    aria-labelledby="home-tab"
+  >
+    <table class="table table-striped caption-top">
+      <caption>
+        LISTADO DE LIBROS
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">nombre</th>
+          <th scope="col">Autor</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Cantidad</th>
+          <th scope="col">Actualizar</th>
+          <th scope="col">Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-template ngFor let-libro [ngForOf]="arrLibros" let-i="index">
+          <tr *ngIf="libro.estado == 1 && libro.editorial == idEditorial">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>
+              <input
+                type="text"
+                name="nombre{{ libro.idl }}Input"
+                id="nombre{{ libro.idl }}Input"
+                value="{{ libro.nombre }}"
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                name="autor{{ libro.idl }}Input"
+                id="autor{{ libro.idl }}Input"
+                value="{{ libro.autor }}"
+              />
+            </td>
+            <td>
+              <input
+                type="number"
+                name="precio{{ libro.idl }}Input"
+                id="precio{{ libro.idl }}Input"
+                value="{{ libro.precio }}"
+              />
+            </td>
+            <td>
+              <input
+                type="number"
+                name="cantidad{{ libro.idl }}Input"
+                id="cantidad{{ libro.idl }}Input"
+                value="{{ libro.cantidad }}"
+              />
+            </td>
+            <td>
+              <button
+                class="btn btn-warning"
+                (click)="
+                  actualizarLibro(
+                    'nombre' + libro.idl + 'Input',
+                    'autor' + libro.idl + 'Input',
+                    'precio' + libro.idl + 'Input',
+                    'cantidad' + libro.idl + 'Input',
+                    libro.idl
+                  )
+                "
+              >
+                actualizar
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-danger" (click)="eliminarLibro(libro.idl)">
+                eliminar
+              </button>
+            </td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </table>
+  </div>
+  <div
+    class="tab-pane fade"
+    id="profile"
+    role="tabpanel"
+    aria-labelledby="profile-tab"
+  >
+    <table class="table table-striped caption-top">
+      <caption>
+        LISTADO DE LIBROS G17
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Categoria</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Cantidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-template ngFor let-libro [ngForOf]="arrLibro17" let-i="index">
+          <tr>
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ libro.nombre }}</td>
+            <td>{{ libro.category }}</td>
+            <td>{{ libro.valor_unitario }}</td>
+            <td>{{ libro.stock }}</td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </table>
+  </div>
+  <div
+    class="tab-pane fade"
+    id="contact"
+    role="tabpanel"
+    aria-labelledby="contact-tab"
+  >
+    <table class="table table-striped caption-top">
+      <caption>
+        LISTADO DE LIBROS G19
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Autor</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Cantidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-template ngFor let-libro [ngForOf]="arrLibro19" let-i="index">
+          <tr>
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ libro.nombre }}</td>
+            <td>{{ libro.autor }}</td>
+            <td>{{ libro.precio }}</td>
+            <td>{{ libro.stock }}</td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
   class="modal fade"
   id="exampleModal"
   tabindex="-1"
@@ -56,54 +230,101 @@
       </div>
       <div class="modal-body">
         <form>
-            <div>
-                <div class="form-floating mb-3">
-                    <input [(ngModel)]="libro.nombre" type="text" class="form-control" id="nombreInput"
-                        placeholder="Nombre" name="nombreInput" />
-                    <label for="nombreInput">Nombre</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input [(ngModel)]="libro.autor" type="text" class="form-control" id="autorInput"
-                        placeholder="Autor" name="autorInput" />
-                    <label for="autorInput">Autor</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input [(ngModel)]="libro.precio" type="number" class="form-control" id="precioInput"
-                        placeholder="precio" name="precioInput" />
-                    <label for="precioInput">precio</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input [(ngModel)]="libro.cantidad" type="number" class="form-control" id="cantidadInput" 
-                        placeholder="Cantidad" name="cantidadInput" />
-                    <label for="cantidadInput">Cantidad</label>
-                </div>
-                <div class="form-floating mb-3">
-                  <ng-multiselect-dropdown name="generosInput"
-                    [placeholder]="'Generos'"
-                    [settings]="dropdownSettings"
-                    [data]="dropdownList"
-                    [(ngModel)]="selectedItems"
-                    (onSelect)="onItemSelect($event)"
-                    (onSelectAll)="onSelectAll($event)"
-                  >
-                  </ng-multiselect-dropdown>
-                </div>
-                <div class="mb-3">
-                    <label for="formFile" class="form-label">Imagen Libro</label>
-                    <input [(ngModel)]="libro.imagen" class="form-control" type="file" name="formFile" id="formFile" (change)="onFileChanged($event)">
-                </div>
+          <div>
+            <div class="mb-3">
+              <select
+                [(ngModel)]="selectedGroup"
+                name="grupoSelect"
+                id="grupoSelect"
+                class="form-select"
+              >
+                <option value="17">G17</option>
+                <option value="18">G18</option>
+                <option value="19">G19</option>
+              </select>
             </div>
+            <div class="form-floating mb-3">
+              <input
+                [(ngModel)]="libro.nombre"
+                type="text"
+                class="form-control"
+                id="nombreInput"
+                placeholder="Nombre"
+                name="nombreInput"
+              />
+              <label for="nombreInput">Nombre</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                [(ngModel)]="libro.autor"
+                type="text"
+                class="form-control"
+                id="autorInput"
+                placeholder="Autor"
+                name="autorInput"
+              />
+              <label for="autorInput">Autor</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                [(ngModel)]="libro.precio"
+                type="number"
+                class="form-control"
+                id="precioInput"
+                placeholder="precio"
+                name="precioInput"
+              />
+              <label for="precioInput">precio</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                [(ngModel)]="libro.cantidad"
+                type="number"
+                class="form-control"
+                id="cantidadInput"
+                placeholder="Cantidad"
+                name="cantidadInput"
+              />
+              <label for="cantidadInput">Cantidad</label>
+            </div>
+            <div class="form-floating mb-3">
+              <ng-multiselect-dropdown
+                name="generosInput"
+                [placeholder]="'Generos'"
+                [settings]="dropdownSettings"
+                [data]="dropdownList"
+                [(ngModel)]="selectedItems"
+                (onSelect)="onItemSelect($event)"
+                (onSelectAll)="onSelectAll($event)"
+              >
+              </ng-multiselect-dropdown>
+            </div>
+            <div class="mb-3">
+              <label for="formFile" class="form-label">Imagen Libro</label>
+              <input
+                [(ngModel)]="libro.imagen"
+                type="text"
+                class="form-control"
+                id="imagenInput"
+                placeholder="imagen"
+                name="imagenInput"
+              />
+            </div>
+          </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-        >
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Close
         </button>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="crearLibro()">Save changes</button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-dismiss="modal"
+          (click)="crearLibro()"
+        >
+          Save changes
+        </button>
       </div>
     </div>
   </div>

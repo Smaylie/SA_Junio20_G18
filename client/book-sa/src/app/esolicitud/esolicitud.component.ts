@@ -15,7 +15,6 @@ export class EsolicitudComponent implements OnInit {
   ngOnInit(): void {
     this.getSolicitudes();
     this.obtenerUsuario();
-    this.bitacora.fecha = formatDate(new Date(), 'yyyy/MM/dd', 'en');
   }
 
   obtenerUsuario() {
@@ -77,7 +76,7 @@ export class EsolicitudComponent implements OnInit {
   bitacora: any = {
     editorial: 0,
     accion: '',
-    fecha: '',
+    fecha: '2021/07/03',
   };
   /*
   autor: "Darren Shan"

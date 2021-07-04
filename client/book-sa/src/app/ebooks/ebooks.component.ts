@@ -15,6 +15,8 @@ export class EbooksComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerUsuario();
     this.obtenerGeneros();
+    this.obtenerGrupo17();
+    this.obtenerGrupo19();
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'id_genero',
@@ -24,7 +26,7 @@ export class EbooksComponent implements OnInit {
       itemsShowLimit: 3,
       allowSearchFilter: true
     };
-    this.bitacora.fecha = formatDate(new Date(), 'yyyy/MM/dd', 'en');
+    this.selectedGroup = '18';
   }
 
   obtenerLibros() {
@@ -83,13 +85,9 @@ export class EbooksComponent implements OnInit {
   }
 
   crearLibro() {
-    const strImg = this.libro.imagen;
-    const foto = strImg.split("\\",4);
-    this.libro.imagen = foto[2];
     this.libro.generos = this.selectedItems;
-    this.servicio.uploadImage(this.imagen.avatar)
-      .subscribe(() => console.log('ok1'));
-    this.servicio.postLibro(this.libro)
+    if(this.selectedGroup == '18') {
+      this.servicio.postLibro(this.libro)
       .subscribe((res) => {
         alert('libro creado con exito! 📙');
         this.obtenerLibros();
@@ -100,6 +98,29 @@ export class EbooksComponent implements OnInit {
       })
       this.bitacora.accion = 'crear libro: ' + this.libro.nombre,
       this.crearBitacora(this.bitacora);
+    } else if(this.selectedGroup == '17') {
+      let libro17 = {
+        id: 0,
+        categoria: "",
+        imagen: this.libro.imagen,
+        images: "",
+        nombre: this.libro.nombre,
+        precio_cliente: this.libro.precio,
+        proveedor: 2,
+        stock: 0,
+        valor_unitario: this.libro.precio + ""
+      }
+      console.log(libro17);
+      this.servicio.postLibroG17(libro17)
+        .subscribe((res) => {
+          console.log(res);
+          this.obtenerGrupo17();
+        }, (err) => {
+          console.error(err);
+        })
+    } else if(this.selectedGroup == '19') {
+
+    }
   }
 
   onFileChanged(event) {
@@ -133,6 +154,21 @@ export class EbooksComponent implements OnInit {
       })
   }
 
+  obtenerGrupo17() {
+    this.servicio.getLibrosG17()
+      .subscribe((res) => {
+        this.obj17 = res;
+        this.arrLibro17 = this.obj17.products;
+      })
+  }
+
+  obtenerGrupo19() {
+    this.servicio.getLibrosG19()
+      .subscribe((res) => {
+        this.arrLibro19 = res;
+      })
+  }
+
   imagen: any = {};
   libro: any = {
     nombre: '',
@@ -161,6 +197,10 @@ export class EbooksComponent implements OnInit {
   bitacora: any = {
     editorial: 0,
     accion: '',
-    fecha: '',
+    fecha: '2021/07/03',
   };
+  arrLibro17: any = [];
+  obj17: any;
+  arrLibro19: any = [];
+  selectedGroup: any;
 }

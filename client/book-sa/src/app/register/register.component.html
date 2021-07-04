@@ -15,6 +15,13 @@
                             </select>
                         </div>
                         <div *ngIf="selectedUsuario == 1; else elseBlock">
+                            <div class="mb-3">
+                                <select [(ngModel)]="selectedGroup" name="grupoSelect" id="grupoSelect" class="form-select">
+                                    <option value="17">G17</option>
+                                    <option value="18">G18</option>
+                                    <option value="19">G19</option>
+                                </select>
+                            </div>
                             <div class="form-floating mb-3">
                                 <input [(ngModel)]="newUser.nombre" type="text" class="form-control" id="nombresInput"
                                     placeholder="Nombres" name="nombresInput" />

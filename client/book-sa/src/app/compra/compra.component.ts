@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiciosService } from '../servicios.service';
 import { Router } from '@angular/router';
-import {formatDate} from '@angular/common';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-compra',
@@ -15,6 +15,7 @@ export class CompraComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerUsuario();
     this.fecha = formatDate(new Date(), 'yyyy/MM/dd', 'en');
+    this.selectedGrupo = "18";
   }
 
   obtenerUsuario() {
@@ -30,7 +31,7 @@ export class CompraComponent implements OnInit {
         this.carro = res;
         this.arrLibros = this.carro.results;
         console.log(this.arrLibros);
-      }, (err)  => {
+      }, (err) => {
         console.error(err);
       })
   }
@@ -41,21 +42,38 @@ export class CompraComponent implements OnInit {
       fecha: this.fecha
     }
 
-    this.servicio.postOrdenes(compra)
-      .subscribe((res) => console.log('ok'));
-
-    this.arrLibros.forEach(element => {
-      this.idEliminar.idr = element.id_carrito;
-      this.idEliminar.idl = element.id_libro;
-      this.servicio.deleteSCarrito(this.idEliminar)
-      .subscribe((res)  => {
-        console.log(res);
-      }, (err)  => {
-        console.error(err);
+    if (this.selectedGrupo == '18') {
+      this.servicio.postOrdenes(compra)
+        .subscribe((res) => console.log('ok'));
+      this.arrLibros.forEach(element => {
+        this.idEliminar.idr = element.id_carrito;
+        this.idEliminar.idl = element.id_libro;
+        this.servicio.deleteSCarrito(this.idEliminar)
+          .subscribe((res) => {
+            console.log(res);
+          }, (err) => {
+            console.error(err);
+          });
       });
-    });
-    alert('compra realizada con exito! 🤑💸');
-    this.router.navigateByUrl('/landing-page');
+
+      this.servicio.postCorreo({ correo: this.usuario.correo, asunto: this.usuario.nombres + " Gracias por su compra", cuerpo: "Se ha enviado un correo con el siguiente link de la factura", link: "www.google.com" })
+        .subscribe((res) => console.log("correo enviado"));
+      alert('compra realizada con exito! 🤑💸');
+      this.router.navigateByUrl('/landing-page');
+    } else {
+      let orden = {
+        userId: 1,
+        products: [
+          {
+            codigo: 1,
+            incart: "2",
+            id: 1
+          }
+        ]
+      }
+      this.servicio.postOrdenG17(orden)
+        .subscribe((res) => console.log(res));
+    }
   }
 
   carro: any;
@@ -74,7 +92,7 @@ export class CompraComponent implements OnInit {
     nombre: '',
     direccion: ''
   }
-  compraTC: any ={
+  compraTC: any = {
     tarjeta: '',
     fecha: '',
     cvv: '',
@@ -88,4 +106,5 @@ export class CompraComponent implements OnInit {
     correo: "rick@gmail.com",
     direccion: "dirección de prueba"
   }
+  selectedGrupo: any;
 }
