@@ -14,7 +14,7 @@ routes.get('/',(req,res)=>{
 })
 routes.post('/',(req,res)=>{
     let nuevoLibro = {
-        nombre: req.body.nombre,
+        nombre: req.body.nombre+req.body.nombre,
         autor: req.body.autor,
         precio: req.body.precio,
         cantidad: req.body.cantidad,
